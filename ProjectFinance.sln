@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectFinance.API", "ProjectFinance.API\ProjectFinance.API.csproj", "{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectFinance.Domain", "ProjectFinance.Domain\ProjectFinance.Domain.csproj", "{37FFCD3B-9279-4559-994B-762F2B066411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectFinance.Infrastructure", "ProjectFinance.Infrastructure\ProjectFinance.Infrastructure.csproj", "{DDAE3621-C590-4B1E-96C4-EE0BC7E01264}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37FFCD3B-9279-4559-994B-762F2B066411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37FFCD3B-9279-4559-994B-762F2B066411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37FFCD3B-9279-4559-994B-762F2B066411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37FFCD3B-9279-4559-994B-762F2B066411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAE3621-C590-4B1E-96C4-EE0BC7E01264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAE3621-C590-4B1E-96C4-EE0BC7E01264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAE3621-C590-4B1E-96C4-EE0BC7E01264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAE3621-C590-4B1E-96C4-EE0BC7E01264}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
