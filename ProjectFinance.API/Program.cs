@@ -16,8 +16,14 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // I want to describe the API with Swagger
+    
     app.UseSwagger();
     app.UseSwaggerUI();
+    // app.UseSwaggerUI( options => {
+    //     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Project Finance API");
+    //     options.RoutePrefix = string.Empty;
+    // });
 }
 
 app.UseHttpsRedirection();
