@@ -6,13 +6,13 @@ using ProjectFinance.Infrastructure.Repositories.Interfaces;
 
 namespace ProjectFinance.Infrastructure.Repositories;
 
-public class ClientRepository : GenericRepository<Client>, IClientRepository
+public class CostDetailRepository : GenericRepository<CostDetail>, ICostDetailRepository
 {
-    public ClientRepository(ProjectFinanceContext context, ILogger logger) : base(context, logger)
+    public CostDetailRepository(ProjectFinanceContext context, ILogger logger) : base(context, logger)
     {
     }
-
-    public override async Task<IEnumerable<Client>> GetAll()
+    
+    public override async Task<IEnumerable<CostDetail>> GetAll()
     {
         try
         {
@@ -23,12 +23,12 @@ public class ClientRepository : GenericRepository<Client>, IClientRepository
         }
         catch (Exception e)
         {
-            _Logger.LogError(e, "{Repo} GetAll method error", typeof(ClientRepository));
+            _Logger.LogError(e, "{Repo} GetAll method error", typeof(CostDetailRepository));
             throw;
         }
     }
     
-    public override async Task<Client?> GetById(int id)
+    public override async Task<CostDetail?> GetById(int id)
     {
         try
         {
@@ -39,29 +39,30 @@ public class ClientRepository : GenericRepository<Client>, IClientRepository
         }
         catch (Exception e)
         {
-            _Logger.LogError(e, "{Repo} GetById method error", typeof(ClientRepository));
+            _Logger.LogError(e, "{Repo} GetById method error", typeof(CostDetailRepository));
             throw;
         }
     }
     
-    public override async Task<bool> Update(Client clientEntity)
+    public override async Task<bool> Update(CostDetail costDetailEntity)
     {
         try
         {
             
-            var client = await _dbSet.FirstOrDefaultAsync(x=>x.Id == clientEntity.Id);
-            if(client == null)
+            var costDetail = await _dbSet.FirstOrDefaultAsync(x=>x.Id == costDetailEntity.Id);
+            if(costDetail == null)
                 return await Task.FromResult(false);
             
-            client.Id = clientEntity.Id;
-            client.Name = clientEntity.Name;
-            client.Code = clientEntity.Code;
+            costDetail.Id = costDetailEntity.Id;
+            costDetail.Name = costDetailEntity.Name;
+            costDetail.Code = costDetailEntity.Code;
+            costDetail.CostCategoryId = costDetailEntity.CostCategoryId;
             
             return true;
         }
         catch (Exception e)
         {
-            _Logger.LogError(e, "{Repo} Update method error", typeof(ClientRepository));
+            _Logger.LogError(e, "{Repo} Update method error", typeof(CostDetailRepository));
             throw;
         }
     }
@@ -70,15 +71,15 @@ public class ClientRepository : GenericRepository<Client>, IClientRepository
     {
         try
         {
-            var client = await _dbSet.FirstOrDefaultAsync(x=>x.Id == id);
-            if(client == null)
+            var costDetail = await _dbSet.FirstOrDefaultAsync(x=>x.Id == id);
+            if(costDetail == null)
                 return await Task.FromResult(false);
             
             return true;
         }
         catch (Exception e)
         {
-            _Logger.LogError(e, "{Repo} Delete method error", typeof(ClientRepository));
+            _Logger.LogError(e, "{Repo} Delete method error", typeof(CostDetailRepository));
             throw;
         }
     }

@@ -24,5 +24,5 @@ public interface IUnitOfWork
     ISupplierRepository Suppliers { get; }
     
     
-    Task CompleteAsync();
+    Task<bool> CompleteAsync();
 }

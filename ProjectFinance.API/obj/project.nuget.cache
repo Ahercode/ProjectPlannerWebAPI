@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+oJy7ognIKJ5eyfDY4IX7EX2y3bwGLTqZq9fGI3iznVmbV0263v3hgV7Y8zPDSz+I6unu3X6zsrONROlcj8gZA==",
+  "dgSpecHash": "CeOg3AmaR74uDt53NYXgmpUjgqRuwb4c2/qdhUYndo0ljoyh4Cs42zjZEfkd5p5WWzMfImUD1G0Z/iEHn5RFhQ==",
   "success": true,
   "projectFilePath": "/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/ProjectFinance.API.csproj",
   "expectedPackageFiles": [
+    "/Users/philip/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/Users/philip/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/philip/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
     "/Users/philip/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
