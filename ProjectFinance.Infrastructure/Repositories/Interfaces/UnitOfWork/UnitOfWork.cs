@@ -7,7 +7,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 {
     private readonly ProjectFinanceContext _context;
 
-    public UnitOfWork(ProjectFinanceContext context, ILoggerFactory loggerFactory, ICostDetailRepository costDetails)
+    public UnitOfWork(ProjectFinanceContext context, ILoggerFactory loggerFactory)
     {
         _context = context;
         var logger = loggerFactory.CreateLogger("logs");
@@ -18,8 +18,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         CostCategories = new CostCategoryRepository(context, logger);
         CostDetails = new CostDetailRepository(context, logger);
         Currencies = new CurrencyRepository(context, logger);
-        // FinanceOptionSchedules = new FinanceOptionScheduleRepository(context, loggerFactory.CreateLogger<FinanceOptionScheduleRepository>());
-        
+       
     }
 
     public IActivityRepository Activities { get; }

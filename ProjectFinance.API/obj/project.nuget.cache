@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CeOg3AmaR74uDt53NYXgmpUjgqRuwb4c2/qdhUYndo0ljoyh4Cs42zjZEfkd5p5WWzMfImUD1G0Z/iEHn5RFhQ==",
+  "dgSpecHash": "vVQkobEnOSb+4U7KCJOkgy3nzdh7DxmNqm7pL2gGfQIsXogZnNfqCZzl2AaiA2gTGaTS5bLR2CM2dMf+4jjd6g==",
   "success": true,
   "projectFilePath": "/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/ProjectFinance.API.csproj",
   "expectedPackageFiles": [
@@ -77,7 +77,10 @@
     "/Users/philip/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
     "/Users/philip/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
     "/Users/philip/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "/Users/philip/.nuget/packages/system.windows.extensions/5.0.0/system.windows.extensions.5.0.0.nupkg.sha512"
+    "/Users/philip/.nuget/packages/system.windows.extensions/5.0.0/system.windows.extensions.5.0.0.nupkg.sha512",
+    "/Users/philip/.nuget/packages/microsoft.netcore.app.ref/7.0.17/microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
+    "/Users/philip/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.17/microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512",
+    "/Users/philip/.nuget/packages/microsoft.netcore.app.host.osx-x64/7.0.17/microsoft.netcore.app.host.osx-x64.7.0.17.nupkg.sha512"
   ],
   "logs": []
 }

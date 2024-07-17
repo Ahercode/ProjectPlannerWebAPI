@@ -25,7 +25,6 @@
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/obj/Debug/net7.0/staticwebassets.build.json
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/obj/Debug/net7.0/staticwebassets.development.json
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/obj/Debug/net7.0/scopedcss/bundle/ProjectFinance.API.styles.css
-/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/obj/Debug/net7.0/ProjectFinance.API.csproj.CopyComplete
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/obj/Debug/net7.0/ProjectFinance.API.dll
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/obj/Debug/net7.0/refint/ProjectFinance.API.dll
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/obj/Debug/net7.0/ProjectFinance.API.pdb
@@ -78,3 +77,6 @@
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/bin/Debug/net7.0/ProjectFinance.Infrastructure.dll
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/bin/Debug/net7.0/ProjectFinance.Infrastructure.pdb
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/bin/Debug/net7.0/ProjectFinance.Domain.pdb
+/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/bin/Debug/net7.0/AutoMapper.dll
+/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/obj/Debug/net7.0/ProjectFinance.API.sourcelink.json
+/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.API/obj/Debug/net7.0/ProjectF.2930DD92.Up2Date

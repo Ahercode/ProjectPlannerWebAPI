@@ -14,4 +14,5 @@
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Infrastructure/obj/Debug/net7.0/ref/ProjectFinance.Infrastructure.dll
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Infrastructure/bin/Debug/net7.0/ProjectFinance.Domain.dll
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Infrastructure/bin/Debug/net7.0/ProjectFinance.Domain.pdb
-/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Infrastructure/obj/Debug/net7.0/ProjectFinance.Infrastructure.csproj.CopyComplete
+/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Infrastructure/obj/Debug/net7.0/ProjectFinance.Infrastructure.sourcelink.json
+/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Infrastructure/obj/Debug/net7.0/ProjectF.32889DDC.Up2Date

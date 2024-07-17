@@ -28,6 +28,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _dbSet.FindAsync(id);
     }
 
+    public virtual async Task<T?> GetByCode(string code)
+    {
+        return await _dbSet.FirstOrDefaultAsync(x => x.GetType().GetProperty("Code").GetValue(x).ToString() == code);
+    }
+
     public virtual async Task<bool> Add(T entity)
     {
         await _dbSet.AddAsync(entity);

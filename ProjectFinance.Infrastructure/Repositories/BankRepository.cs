@@ -84,4 +84,20 @@ public class BankRepository : GenericRepository<Bank> , IBankRepository
             throw;
         }
     }
+
+    public override async Task<Bank?> GetByCode(string code)
+    {
+        try
+        {
+            return await _dbSet
+                .AsNoTracking()
+                .AsSplitQuery()
+                .FirstOrDefaultAsync(b => b.Code == code);
+        }
+        catch (Exception e)
+        {
+            _Logger.LogError(e, "{Repo} GetByCode method error", typeof(BankRepository));
+            throw;
+        }
+    }
 }

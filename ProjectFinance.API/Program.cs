@@ -32,6 +32,8 @@ if (app.Environment.IsDevelopment())
     //     options.RoutePrefix = string.Empty;
     // });
 }
+ app.UseSwagger();
+ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

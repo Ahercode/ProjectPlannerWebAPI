@@ -12,3 +12,4 @@
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Domain/obj/Debug/net7.0/ProjectFinance.Domain.pdb
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Domain/obj/Debug/net7.0/ProjectFinance.Domain.genruntimeconfig.cache
 /Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Domain/obj/Debug/net7.0/ref/ProjectFinance.Domain.dll
+/Users/philip/RiderProjects/ProjectFinance/ProjectFinance.Domain/obj/Debug/net7.0/ProjectFinance.Domain.sourcelink.json
