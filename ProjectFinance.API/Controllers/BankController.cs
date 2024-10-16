@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses;
 using ProjectFinance.Domain.Entities;
 using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
@@ -65,5 +66,49 @@ public class BankController : BaseController
         
     }
     
+    [HttpPut]
     
+    public async Task<IActionResult> UpdateBank(CommonUpdateRequest updateBankRequest)
+    {
+        if(!ModelState.IsValid)
+            return BadRequest("Invalid data provided");
+
+        try
+        {
+            var bank = _mapper.Map<Bank>(updateBankRequest);
+
+            var bankInDb = await _unitOfWork.Banks.GetById(bank.Id);
+            if (bankInDb == null)
+                return BadRequest("Bank not found");
+
+            bankInDb.Name = bank.Name;
+            bankInDb.Code = bank.Code;
+            // bankInDb.Description = bank.Description;
+
+            await _unitOfWork.CompleteAsync();
+        
+            return Ok("Bank updated successfully");
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    [HttpDelete("{id}")]
+    
+    public async Task<IActionResult> DeleteBank(int id)
+    {
+        var bank = await _unitOfWork.Banks.GetById(id);
+        
+        if(bank == null)
+            return NotFound("Bank not found");
+        
+        await _unitOfWork.Banks.Delete(id);
+        await _unitOfWork.CompleteAsync();
+        
+        return Ok("Bank deleted successfully");
+    }
 }

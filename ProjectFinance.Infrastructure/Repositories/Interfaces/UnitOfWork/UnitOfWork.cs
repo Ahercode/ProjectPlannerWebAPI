@@ -11,13 +11,26 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     {
         _context = context;
         var logger = loggerFactory.CreateLogger("logs");
-        // Activities = new ActivityRepository(context, loggerFactory.CreateLogger<ActivityRepository>());
+        Activities = new ActivityRepository(context, loggerFactory.CreateLogger<ActivityRepository>());
         FinanceOptions = new FinanceOptionRepository(context, logger);
         Banks = new BankRepository(context, logger);
         Clients = new ClientRepository(context, logger);
         CostCategories = new CostCategoryRepository(context, logger);
         CostDetails = new CostDetailRepository(context, logger);
         Currencies = new CurrencyRepository(context, logger);
+        // FinanceOptionSchedules = new FinanceOptionScheduleRepository(context, logger);
+        Invoices = new InvoiceRepository(context, logger);
+        Payments = new PaymentRepository(context, logger);
+        POPaySchedules = new POPayScheduleRepository(context, logger);
+        Projects = new ProjectRepository(context, logger);
+        ProjectCategories = new ProjectCategoryRepository(context, logger);
+        // ProjectActivities = new ProjectActivityRepository(context, logger);
+        ProjectActivityCosts = new ProjectActivityCostRepository(context, logger);
+        // ProjectSchedules = new ProjectScheduleRepository(context, logger);
+        ProjectTypes = new ProjectTypeRepository(context, logger);
+        PurchaseOrders = new PurchaseOrderRepository(context, logger);
+        Staffs = new StaffRepository(context, logger);
+        Suppliers = new SupplierRepository(context, logger);
        
     }
 

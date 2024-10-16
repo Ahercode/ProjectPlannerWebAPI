@@ -66,4 +66,20 @@ public class FinanceOptionRepository : GenericRepository<FinanceOption>, IFinanc
             throw;
         }
     }
+    
+    public async Task<FinanceOption?> GetByBankId(int? bankId)
+    {
+        try
+        {
+            return await _dbSet
+                .AsNoTracking()
+                .AsSplitQuery()
+                .FirstOrDefaultAsync(b => b.BankId == bankId);
+        }
+        catch (Exception e)
+        {
+            _Logger.LogError(e, "{Repo} GetByBankId method error", typeof(FinanceOptionRepository));
+            throw;
+        }
+    }
 }
