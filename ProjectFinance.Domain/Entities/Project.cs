@@ -24,11 +24,9 @@ public partial class Project
 
     public int? CurrencyId { get; set; }
 
-    [Column(TypeName = "date")]
-    public DateTime? StartDate { get; set; }
+    public DateOnly? StartDate { get; set; }
 
-    [Column(TypeName = "date")]
-    public DateTime? EndDate { get; set; }
+    public DateOnly? EndDate { get; set; }
 
     public int? ClientId { get; set; }
 
@@ -49,17 +47,17 @@ public partial class Project
     public virtual Currency? Currency { get; set; }
 
     [InverseProperty("Project")]
-    public virtual ICollection<Invoice> Invoices { get; } = new List<Invoice>();
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 
     [InverseProperty("Project")]
-    public virtual ICollection<ProjectActivity> ProjectActivities { get; } = new List<ProjectActivity>();
+    public virtual ICollection<ProjectActivity> ProjectActivities { get; set; } = new List<ProjectActivity>();
 
     [ForeignKey("ProjectCategoryId")]
     [InverseProperty("Projects")]
     public virtual ProjectCategory? ProjectCategory { get; set; }
 
     [InverseProperty("Project")]
-    public virtual ICollection<ProjectSchedule> ProjectSchedules { get; } = new List<ProjectSchedule>();
+    public virtual ICollection<ProjectSchedule> ProjectSchedules { get; set; } = new List<ProjectSchedule>();
 
     [ForeignKey("ProjectTypeId")]
     [InverseProperty("Projects")]

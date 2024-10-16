@@ -19,5 +19,5 @@ public partial class Bank
     public string? Name { get; set; }
 
     [InverseProperty("Bank")]
-    public virtual ICollection<FinanceOption> FinanceOptions { get; } = new List<FinanceOption>();
+    public virtual ICollection<FinanceOption> FinanceOptions { get; set; } = new List<FinanceOption>();
 }

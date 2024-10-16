@@ -34,6 +34,8 @@ public partial class ProjectFinanceContext : DbContext
 
     public virtual DbSet<Invoice> Invoices { get; set; }
 
+    public virtual DbSet<MonitoringEvaluation> MonitoringEvaluations { get; set; }
+
     public virtual DbSet<POPaySchedule> POPaySchedules { get; set; }
 
     public virtual DbSet<Payment> Payments { get; set; }
@@ -55,7 +57,11 @@ public partial class ProjectFinanceContext : DbContext
     public virtual DbSet<Staff> Staff { get; set; }
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
-    
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=173.248.129.77,1439; Database=ProjectPlanner; User ID=sa; Password=Pa$$w0rd@21;  MultipleActiveResultSets=true; Trusted_Connection=false; TrustServerCertificate=true");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Activity>(entity =>
@@ -108,6 +114,11 @@ public partial class ProjectFinanceContext : DbContext
             entity.HasOne(d => d.PurchaseOrder).WithMany(p => p.Invoices).HasConstraintName("FK_Invoice_PurchaseOrder");
 
             entity.HasOne(d => d.Supplier).WithMany(p => p.Invoices).HasConstraintName("FK_Invoice_Supplier");
+        });
+
+        modelBuilder.Entity<MonitoringEvaluation>(entity =>
+        {
+            entity.HasOne(d => d.Activity).WithMany(p => p.MonitoringEvaluations).HasConstraintName("FK_MonitoringEvaluation_MonitoringEvaluation");
         });
 
         modelBuilder.Entity<POPaySchedule>(entity =>

@@ -23,8 +23,7 @@ public partial class FinanceOptionSchedule
     [Column(TypeName = "decimal(18, 2)")]
     public decimal? Disbursement { get; set; }
 
-    [Column(TypeName = "date")]
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
 
     [ForeignKey("FinanceOptionId")]
     [InverseProperty("FinanceOptionSchedules")]

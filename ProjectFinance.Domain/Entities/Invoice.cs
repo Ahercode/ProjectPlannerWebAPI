@@ -22,8 +22,7 @@ public partial class Invoice
     [Column(TypeName = "decimal(18, 2)")]
     public decimal? Amount { get; set; }
 
-    [Column(TypeName = "date")]
-    public DateTime? DueDate { get; set; }
+    public DateOnly? DueDate { get; set; }
 
     public int? ProjectId { get; set; }
 

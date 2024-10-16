@@ -14,8 +14,7 @@ public partial class ProjectSchedule
 
     public int? ProjectId { get; set; }
 
-    [Column(TypeName = "date")]
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
 
     [Column(TypeName = "decimal(18, 2)")]
     public decimal? Amount { get; set; }

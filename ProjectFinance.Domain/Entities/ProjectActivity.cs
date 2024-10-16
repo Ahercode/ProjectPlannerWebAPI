@@ -25,5 +25,5 @@ public partial class ProjectActivity
     public virtual Project? Project { get; set; }
 
     [InverseProperty("ProjectActivity")]
-    public virtual ICollection<ProjectActivityCost> ProjectActivityCosts { get; } = new List<ProjectActivityCost>();
+    public virtual ICollection<ProjectActivityCost> ProjectActivityCosts { get; set; } = new List<ProjectActivityCost>();
 }

@@ -24,5 +24,5 @@ public partial class CostDetail
     public virtual CostCategory? CostCategory { get; set; }
 
     [InverseProperty("CostDetail")]
-    public virtual ICollection<ProjectActivityCost> ProjectActivityCosts { get; } = new List<ProjectActivityCost>();
+    public virtual ICollection<ProjectActivityCost> ProjectActivityCosts { get; set; } = new List<ProjectActivityCost>();
 }

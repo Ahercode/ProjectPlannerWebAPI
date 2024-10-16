@@ -20,8 +20,7 @@ public partial class PurchaseOrder
 
     public int? SupplierId { get; set; }
 
-    [Column(TypeName = "date")]
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
 
     [Column(TypeName = "decimal(18, 2)")]
     public decimal? Amount { get; set; }
@@ -30,8 +29,8 @@ public partial class PurchaseOrder
     public string? PONumber { get; set; }
 
     [InverseProperty("PurchaseOrder")]
-    public virtual ICollection<Invoice> Invoices { get; } = new List<Invoice>();
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 
     [InverseProperty("PO")]
-    public virtual ICollection<POPaySchedule> POPaySchedules { get; } = new List<POPaySchedule>();
+    public virtual ICollection<POPaySchedule> POPaySchedules { get; set; } = new List<POPaySchedule>();
 }
