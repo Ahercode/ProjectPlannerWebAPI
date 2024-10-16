@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\controllers\\financeoptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\controllers\\financeoptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\controllers\\projectschedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\controllers\\projectschedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37FFCD3B-9279-4559-994B-762F2B066411}|ProjectFinance.Domain\\ProjectFinance.Domain.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.domain\\dtos\\responses\\activity\\activityresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37FFCD3B-9279-4559-994B-762F2B066411}|ProjectFinance.Domain\\ProjectFinance.Domain.csproj|solutionrelative:projectfinance.domain\\dtos\\responses\\activity\\activityresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\controllers\\projectactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\controllers\\projectactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DDAE3621-C590-4B1E-96C4-EE0BC7E01264}|ProjectFinance.Infrastructure\\ProjectFinance.Infrastructure.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.infrastructure\\dbcontext\\projectfinancecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DDAE3621-C590-4B1E-96C4-EE0BC7E01264}|ProjectFinance.Infrastructure\\ProjectFinance.Infrastructure.csproj|solutionrelative:projectfinance.infrastructure\\dbcontext\\projectfinancecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\mappingprofiles\\domaintoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\mappingprofiles\\domaintoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\controllers\\financeoptionschedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\controllers\\financeoptionschedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\mappingprofiles\\requesttodoamin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\mappingprofiles\\requesttodoamin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|c:\\users\\day\\desktop\\react\\projectplannerwebapi\\projectfinance.api\\mappingprofiles\\domaintoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD7D2E76-7925-4050-92F0-EF70DCE9F61D}|ProjectFinance.API\\ProjectFinance.API.csproj|solutionrelative:projectfinance.api\\mappingprofiles\\domaintoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,67 +42,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ActivityResponse.cs",
-              "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.Domain\\Dtos\\Responses\\activity\\ActivityResponse.cs",
-              "RelativeDocumentMoniker": "ProjectFinance.Domain\\Dtos\\Responses\\activity\\ActivityResponse.cs",
-              "ToolTip": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.Domain\\Dtos\\Responses\\activity\\ActivityResponse.cs",
-              "RelativeToolTip": "ProjectFinance.Domain\\Dtos\\Responses\\activity\\ActivityResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T12:21:54.09Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "ProjectScheduleController.cs",
               "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\ProjectScheduleController.cs",
               "RelativeDocumentMoniker": "ProjectFinance.API\\Controllers\\ProjectScheduleController.cs",
               "ToolTip": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\ProjectScheduleController.cs",
               "RelativeToolTip": "ProjectFinance.API\\Controllers\\ProjectScheduleController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T12:12:33.37Z",
+              "WhenOpened": "2024-10-16T15:20:30.468Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ActivityController.cs",
-              "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\ActivityController.cs",
-              "RelativeDocumentMoniker": "ProjectFinance.API\\Controllers\\ActivityController.cs",
-              "ToolTip": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\ActivityController.cs*",
-              "RelativeToolTip": "ProjectFinance.API\\Controllers\\ActivityController.cs*",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAACkAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T15:38:57.441Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ProjectFinanceContext.cs",
-              "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.Infrastructure\\DBContext\\ProjectFinanceContext.cs",
-              "RelativeDocumentMoniker": "ProjectFinance.Infrastructure\\DBContext\\ProjectFinanceContext.cs",
-              "ToolTip": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.Infrastructure\\DBContext\\ProjectFinanceContext.cs",
-              "RelativeToolTip": "ProjectFinance.Infrastructure\\DBContext\\ProjectFinanceContext.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Program.cs",
+              "RelativeDocumentMoniker": "ProjectFinance.API\\Program.cs",
+              "ToolTip": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Program.cs",
+              "RelativeToolTip": "ProjectFinance.API\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T15:26:33.017Z",
+              "WhenOpened": "2024-10-16T15:42:58.216Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\appsettings.json",
+              "RelativeDocumentMoniker": "ProjectFinance.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\appsettings.json",
+              "RelativeToolTip": "ProjectFinance.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-16T15:33:49.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProjectActivityController.cs",
+              "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\ProjectActivityController.cs",
+              "RelativeDocumentMoniker": "ProjectFinance.API\\Controllers\\ProjectActivityController.cs",
+              "ToolTip": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\ProjectActivityController.cs",
+              "RelativeToolTip": "ProjectFinance.API\\Controllers\\ProjectActivityController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:20:05.806Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FinanceOptionController.cs",
+              "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\FinanceOptionController.cs",
+              "RelativeDocumentMoniker": "ProjectFinance.API\\Controllers\\FinanceOptionController.cs",
+              "ToolTip": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\FinanceOptionController.cs",
+              "RelativeToolTip": "ProjectFinance.API\\Controllers\\FinanceOptionController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:10:13.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FinanceOptionScheduleController.cs",
+              "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\FinanceOptionScheduleController.cs",
+              "RelativeDocumentMoniker": "ProjectFinance.API\\Controllers\\FinanceOptionScheduleController.cs",
+              "ToolTip": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\Controllers\\FinanceOptionScheduleController.cs",
+              "RelativeToolTip": "ProjectFinance.API\\Controllers\\FinanceOptionScheduleController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwDgAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:08:06.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "DomainToResponse.cs",
               "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\MappingProfiles\\DomainToResponse.cs",
               "RelativeDocumentMoniker": "ProjectFinance.API\\MappingProfiles\\DomainToResponse.cs",
@@ -102,12 +132,11 @@
               "RelativeToolTip": "ProjectFinance.API\\MappingProfiles\\DomainToResponse.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T15:25:47.933Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T15:25:47.933Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "RequestToDoamin.cs",
               "DocumentMoniker": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.API\\MappingProfiles\\RequestToDoamin.cs",
               "RelativeDocumentMoniker": "ProjectFinance.API\\MappingProfiles\\RequestToDoamin.cs",
@@ -115,8 +144,7 @@
               "RelativeToolTip": "ProjectFinance.API\\MappingProfiles\\RequestToDoamin.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T15:25:42.672Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T15:25:42.672Z"
             }
           ]
         }
