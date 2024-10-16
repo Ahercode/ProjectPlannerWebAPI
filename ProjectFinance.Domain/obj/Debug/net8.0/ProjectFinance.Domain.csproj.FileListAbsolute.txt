@@ -1,0 +1,15 @@
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\bin\Debug\net8.0\ProjectFinance.Domain.deps.json
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\bin\Debug\net8.0\ProjectFinance.Domain.runtimeconfig.json
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\bin\Debug\net8.0\ProjectFinance.Domain.dll
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\bin\Debug\net8.0\ProjectFinance.Domain.pdb
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ProjectFinance.Domain.csproj.AssemblyReference.cache
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ProjectFinance.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ProjectFinance.Domain.AssemblyInfoInputs.cache
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ProjectFinance.Domain.AssemblyInfo.cs
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ProjectFinance.Domain.csproj.CoreCompileInputs.cache
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ProjectFinance.Domain.sourcelink.json
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ProjectFinance.Domain.dll
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\refint\ProjectFinance.Domain.dll
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ProjectFinance.Domain.pdb
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ProjectFinance.Domain.genruntimeconfig.cache
+C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\obj\Debug\net8.0\ref\ProjectFinance.Domain.dll

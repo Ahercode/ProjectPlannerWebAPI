@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectFinance.Domain.Dtos.Requests;
 using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses;
+using ProjectFinance.Domain.Dtos.Responses.activity;
 using ProjectFinance.Domain.Entities;
 using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
 
@@ -18,7 +19,7 @@ public class ActivityController : BaseController
     public async Task<IActionResult> GetAllActivities()
     {
         var activities = await _unitOfWork.Activities.GetAll();
-        var activitiesDto = _mapper.Map<IEnumerable<CommonResponse>>(activities);
+        var activitiesDto = _mapper.Map<IEnumerable<ActivityResponse>>(activities);
         
         return Ok(activitiesDto);
     }

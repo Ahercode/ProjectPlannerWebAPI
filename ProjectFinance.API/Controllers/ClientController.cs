@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses;
 using ProjectFinance.Domain.Dtos.Responses.client;
 using ProjectFinance.Domain.Entities;
@@ -18,7 +19,7 @@ public class ClientController : BaseController
     public async Task<IActionResult> GetAllClients()
     {
         var clients = await _unitOfWork.Clients.GetAll();
-        var clientsDto = _mapper.Map<IEnumerable<CommonResponse>>(clients);
+        var clientsDto = _mapper.Map<IEnumerable<ClientResponse>>(clients);
         
         return Ok(clientsDto);
     }
@@ -66,7 +67,7 @@ public class ClientController : BaseController
     
     [HttpPut("{id}")]
     
-    public async Task<IActionResult> UpdateClient(int id, ClientResponse updateClientRequest)
+    public async Task<IActionResult> UpdateClient(int id, ClientResponse CommonUpdateRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -78,7 +79,7 @@ public class ClientController : BaseController
             if (client == null)
                 return NotFound("Client not found");
 
-            _mapper.Map(updateClientRequest, client);
+            _mapper.Map(CommonUpdateRequest, client);
 
             await _unitOfWork.CompleteAsync();
         

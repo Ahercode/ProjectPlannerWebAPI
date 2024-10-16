@@ -36,11 +36,10 @@ public class ProjectScheduleController : BaseController
     }
 
     [HttpPost]
-
     public async Task<IActionResult> CreateProjectSchedule(ProjectScheduleResponse createProjectScheduleRequest)
     {
         if (!ModelState.IsValid)
-            return BadRequest("Invalid data provided");
+            return BadRequest(ModelState);
 
         try
         {
@@ -50,20 +49,22 @@ public class ProjectScheduleController : BaseController
             {
                 var projectScheduleInDb = await _unitOfWork.ProjectSchedules.GetById(projectSchedule.Id);
                 if (projectScheduleInDb != null)
-                    return BadRequest("ProjectSchedule already exists");
+                    return Conflict(new { Message = "ProjectSchedule already exists." });
             }
 
             await _unitOfWork.ProjectSchedules.Add(projectSchedule);
             await _unitOfWork.CompleteAsync();
+
+            return CreatedAtAction(nameof(GetAProjectSchedule), new { id = projectSchedule.Id }, projectSchedule);
         }
         catch (Exception e)
         {
-            return BadRequest(e.Message);
+            // Consider logging the exception here
+            return StatusCode(500, new { Message = "An error occurred while processing your request.", Details = e.Message });
         }
-
-        return Ok();
     }
-    
+
+
     [HttpPut("{id}")]
     
     public async Task<IActionResult> UpdateProjectSchedule(int id, ProjectScheduleResponse updateProjectScheduleRequest)
