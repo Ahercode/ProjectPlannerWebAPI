@@ -5,6 +5,7 @@ using ProjectFinance.Domain.Dtos.Responses.client;
 using ProjectFinance.Domain.Dtos.Responses.costdetail;
 using ProjectFinance.Domain.Dtos.Responses.financeoption;
 using ProjectFinance.Domain.Dtos.Responses.invoice;
+using ProjectFinance.Domain.Dtos.Responses.monitoringevaluation;
 using ProjectFinance.Domain.Dtos.Responses.payment;
 using ProjectFinance.Domain.Dtos.Responses.popayschedule;
 using ProjectFinance.Domain.Dtos.Responses.project;
@@ -35,6 +36,7 @@ public class DomainToResponse : Profile
         CreateMap<FinanceOption, FinanceOptionResponse>().ReverseMap();
         CreateMap<FinanceOptionSchedule, CommonResponse>();
         CreateMap<Invoice, InvoiceResponse>().ReverseMap();
+        CreateMap<MonitoringEvaluation, MonitoringEvaluationResponse>().ReverseMap();
         CreateMap<Payment, PaymentResponse>().ReverseMap();
         CreateMap<POPaySchedule, POPayScheduleResponse>().ReverseMap();
         CreateMap<Project, ProjectResponse>().ReverseMap();

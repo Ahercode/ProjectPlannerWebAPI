@@ -11,6 +11,7 @@ public interface IUnitOfWork
     ICurrencyRepository Currencies { get; }
     IFinanceOptionScheduleRepository FinanceOptionSchedules { get; }
     IInvoiceRepository Invoices { get; }
+    IMonitoringEvaluationRepository MonitoringEvaluations { get; }
     IPaymentRepository Payments { get; }
     IPOPayScheduleRepository POPaySchedules { get; }
     IProjectRepository Projects { get; }

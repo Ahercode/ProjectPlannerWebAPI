@@ -20,6 +20,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         Currencies = new CurrencyRepository(context, logger);
         // FinanceOptionSchedules = new FinanceOptionScheduleRepository(context, logger);
         Invoices = new InvoiceRepository(context, logger);
+        MonitoringEvaluations = new MonitoringEvaluationRepository(context, logger);
         Payments = new PaymentRepository(context, logger);
         POPaySchedules = new POPayScheduleRepository(context, logger);
         Projects = new ProjectRepository(context, logger);
@@ -43,6 +44,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public ICurrencyRepository Currencies { get; }
     public IFinanceOptionScheduleRepository FinanceOptionSchedules { get; }
     public IInvoiceRepository Invoices { get; }
+    public IMonitoringEvaluationRepository MonitoringEvaluations { get; }
     public IPaymentRepository Payments { get; }
     public IPOPayScheduleRepository POPaySchedules { get; }
     public IProjectRepository Projects { get; }
