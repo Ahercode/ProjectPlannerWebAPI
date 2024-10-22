@@ -33,6 +33,8 @@ public partial class ProjectFinanceContext : DbContext
     public virtual DbSet<FinanceOptionSchedule> FinanceOptionSchedules { get; set; }
 
     public virtual DbSet<Invoice> Invoices { get; set; }
+    
+    public virtual DbSet<MonitoringEvaluation> MonitoringEvaluations { get; set; }
 
     public virtual DbSet<POPaySchedule> POPaySchedules { get; set; }
 

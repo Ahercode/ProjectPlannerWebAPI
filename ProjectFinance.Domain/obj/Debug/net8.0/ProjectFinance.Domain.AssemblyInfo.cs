@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProjectFinance.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00079c541255cbea712834ea2cd50ec97239643a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+070854ca6932e15f39e5d3611d316cf651e3b47b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProjectFinance.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProjectFinance.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
