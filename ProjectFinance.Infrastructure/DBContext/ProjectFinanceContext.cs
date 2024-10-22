@@ -33,7 +33,7 @@ public partial class ProjectFinanceContext : DbContext
     public virtual DbSet<FinanceOptionSchedule> FinanceOptionSchedules { get; set; }
 
     public virtual DbSet<Invoice> Invoices { get; set; }
-    
+
     public virtual DbSet<MonitoringEvaluation> MonitoringEvaluations { get; set; }
 
     public virtual DbSet<POPaySchedule> POPaySchedules { get; set; }
@@ -57,7 +57,7 @@ public partial class ProjectFinanceContext : DbContext
     public virtual DbSet<Staff> Staff { get; set; }
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Activity>(entity =>
@@ -110,6 +110,11 @@ public partial class ProjectFinanceContext : DbContext
             entity.HasOne(d => d.PurchaseOrder).WithMany(p => p.Invoices).HasConstraintName("FK_Invoice_PurchaseOrder");
 
             entity.HasOne(d => d.Supplier).WithMany(p => p.Invoices).HasConstraintName("FK_Invoice_Supplier");
+        });
+
+        modelBuilder.Entity<MonitoringEvaluation>(entity =>
+        {
+            entity.HasOne(d => d.Activity).WithMany(p => p.MonitoringEvaluations).HasConstraintName("FK_MonitoringEvaluation_MonitoringEvaluation");
         });
 
         modelBuilder.Entity<POPaySchedule>(entity =>
