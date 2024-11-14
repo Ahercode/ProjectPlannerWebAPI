@@ -26,7 +26,6 @@ public class DomainToResponse : Profile
 {
     public DomainToResponse()
     {
-        
         CreateMap<Activity, ActivityResponse>().ReverseMap();
         CreateMap<Bank, CommonResponse>().ReverseMap();
         CreateMap<Client, ClientResponse>().ReverseMap();
@@ -50,8 +49,7 @@ public class DomainToResponse : Profile
         CreateMap<Supplier, SupplierResponse>().ReverseMap();
         CreateMap<Contractor, ContractorResponse>().ReverseMap();
         CreateMap<StakeHolder, StakeHolderResponse>().ReverseMap();
-
-
-        
+        CreateMap<PODetail, PODetailResponse>().ReverseMap();
+        CreateMap<PODetailReceive, PODetailReceiveResponse>().ReverseMap();
     }
 }

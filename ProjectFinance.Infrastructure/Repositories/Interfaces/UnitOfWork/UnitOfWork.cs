@@ -34,6 +34,8 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         Suppliers = new SupplierRepository(context, logger);
         StakeHolders = new StakeHolderRepository(context, logger);
         Contractors = new ContractorRepository(context, logger);
+        PODetails = new PODetailRepository(context, logger);
+        PODetailReceives = new PODetailReceiveRepository(context, logger);
        
     }
 
@@ -60,6 +62,10 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public ISupplierRepository Suppliers { get; }
     public IStakeHolderRepository StakeHolders { get; }
     public IContractorRepository Contractors { get; }
+    
+    public IPODetailRepository PODetails { get; }
+    
+    public IPODetailReceiveRepository PODetailReceives { get; }
     
     
     

@@ -25,6 +25,8 @@ public interface IUnitOfWork
     ISupplierRepository Suppliers { get; }
     IStakeHolderRepository StakeHolders { get; }
     IContractorRepository Contractors { get; }
+    IPODetailRepository PODetails { get; }
+    IPODetailReceiveRepository PODetailReceives { get; }
     
     Task<bool> CompleteAsync();
 }

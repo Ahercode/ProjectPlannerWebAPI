@@ -38,6 +38,10 @@ public partial class ProjectFinanceContext : DbContext
 
     public virtual DbSet<MonitoringEvaluation> MonitoringEvaluations { get; set; }
 
+    public virtual DbSet<PODetail> PODetails { get; set; }
+
+    public virtual DbSet<PODetailReceive> PODetailReceives { get; set; }
+
     public virtual DbSet<POPaySchedule> POPaySchedules { get; set; }
 
     public virtual DbSet<Payment> Payments { get; set; }
@@ -63,7 +67,6 @@ public partial class ProjectFinanceContext : DbContext
     public virtual DbSet<StakeHolder> StakeHolders { get; set; }
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
-    
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -176,6 +179,11 @@ public partial class ProjectFinanceContext : DbContext
         modelBuilder.Entity<ProjectSchedule>(entity =>
         {
             entity.HasOne(d => d.Project).WithMany(p => p.ProjectSchedules).HasConstraintName("FK_ProjectSchedule_Project");
+        });
+
+        modelBuilder.Entity<PurchaseOrder>(entity =>
+        {
+            entity.Property(e => e.Reference).IsFixedLength();
         });
 
         modelBuilder.Entity<Staff>(entity =>

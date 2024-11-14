@@ -56,6 +56,10 @@ public class RequestToDoamin : Profile
         CreateMap<ContractorUpdateRequest, Contractor>().ReverseMap();
         CreateMap<StakeHolderCreateRequest, StakeHolder>().ReverseMap();
         CreateMap<StakeHolderUpdateRequest, StakeHolder>().ReverseMap();
+        CreateMap<PODetailCreateRequest, PODetail>().ReverseMap();
+        CreateMap<PODetailUpdateRequest, PODetail>().ReverseMap();
+        CreateMap<PODetailReceiveCreateRequest, PODetailReceive>().ReverseMap();
+        CreateMap<PODetailReceiveUpdateRequest, PODetailReceive>().ReverseMap();
     }
     
 }

@@ -281,3 +281,9 @@
 /Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.API/obj/Release/net8.0/ProjectFinance.API.pdb
 /Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.API/obj/Release/net8.0/ProjectFinance.API.genruntimeconfig.cache
 /Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.API/obj/Release/net8.0/ref/ProjectFinance.API.dll
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.API/bin/Release/net8.0/System.Data.SqlClient.dll
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.API/bin/Release/net8.0/runtimes/win-arm64/native/sni.dll
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.API/bin/Release/net8.0/runtimes/win-x64/native/sni.dll
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.API/bin/Release/net8.0/runtimes/win-x86/native/sni.dll
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.API/bin/Release/net8.0/runtimes/unix/lib/net8.0/System.Data.SqlClient.dll
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.API/bin/Release/net8.0/runtimes/win/lib/net8.0/System.Data.SqlClient.dll
