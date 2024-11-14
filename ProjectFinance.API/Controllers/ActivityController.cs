@@ -28,7 +28,7 @@ public class ActivityController : BaseController
     public async Task<IActionResult> GetAnActivity(int id)
     {
         var activity = await _unitOfWork.Activities.GetById(id);
-        var activityDto = _mapper.Map<CommonResponse>(activity);
+        var activityDto = _mapper.Map<ActivityResponse>(activity);
         
         if(activityDto == null)
             return NotFound("Activity not found");
@@ -38,7 +38,7 @@ public class ActivityController : BaseController
     
     
     [HttpPost("")]
-    public async Task<IActionResult> CreateActivity(CommonCreateRequest createActivityRequest)
+    public async Task<IActionResult> CreateActivity(ActivityCreateRequest createActivityRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -68,7 +68,7 @@ public class ActivityController : BaseController
     }
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateActivity(int id, CommonUpdateRequest updateActivityRequest)
+    public async Task<IActionResult> UpdateActivity(int id, ActivityUpdateRequest updateActivityRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");

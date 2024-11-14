@@ -1,113 +1,114 @@
-// using AutoMapper;
-// using Microsoft.AspNetCore.Mvc;
-// using ProjectFinance.Domain.Dtos.Responses.monitoringevaluation;
-// using ProjectFinance.Domain.Entities;
-// using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
-//
-// namespace ProjectFinance.API.Controllers;
-//
-// public class MonitoringEvaluationController : BaseController
-// {
-//     public MonitoringEvaluationController(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
-//     {
-//     }
-//     
-//     [HttpGet("")]
-//     
-//     public async Task<IActionResult> GetAllMonitoringEvaluations()
-//     {
-//         var monitoringEvaluations = await _unitOfWork.MonitoringEvaluation.GetAll();
-//         var monitoringEvaluationsDto = _mapper.Map<IEnumerable<MonitoringEvaluationResponse>>(monitoringEvaluations);
-//         
-//         return Ok(monitoringEvaluationsDto);
-//     }
-//     
-//     [HttpGet("{id}")]
-//     
-//     public async Task<IActionResult> GetAMonitoringEvaluation(int id)
-//     {
-//         var monitoringEvaluation = await _unitOfWork.MonitoringEvaluations.GetById(id);
-//         var monitoringEvaluationDto = _mapper.Map<MonitoringEvaluationResponse>(monitoringEvaluation);
-//         
-//         if(monitoringEvaluationDto == null)
-//             return NotFound("Monitoring Evaluation not found");
-//         
-//         return Ok(monitoringEvaluationDto);
-//     }
-//     
-//     [HttpPost]
-//     
-//     public async Task<IActionResult> CreateMonitoringEvaluation(MonitoringEvaluationResponse createMonitoringEvaluationRequest)
-//     {
-//         if(!ModelState.IsValid)
-//             return BadRequest("Invalid data provided");
-//
-//         try
-//         {
-//             var monitoringEvaluation = _mapper.Map<MonitoringEvaluation>(createMonitoringEvaluationRequest);
-//
-//             if (monitoringEvaluation.Id != null)
-//             {
-//                 var monitoringEvaluationInDb = await _unitOfWork.MonitoringEvaluations.GetById(monitoringEvaluation.Id);
-//                 if (monitoringEvaluationInDb != null)
-//                     return BadRequest("Monitoring Evaluation already exists");
-//             }
-//
-//             await _unitOfWork.MonitoringEvaluations.Add(monitoringEvaluation);
-//             await _unitOfWork.CompleteAsync();
-//         
-//             return Ok("Monitoring Evaluation created successfully");
-//         }
-//         catch (Exception e)
-//         {
-//             return BadRequest(e.Message);
-//         }
-//     }
-//     
-//     [HttpPut]
-//     
-//     public async Task<IActionResult> UpdateMonitoringEvaluation(MonitoringEvaluationResponse updateMonitoringEvaluationRequest)
-//     {
-//         if(!ModelState.IsValid)
-//             return BadRequest("Invalid data provided");
-//
-//         try
-//         {
-//             var monitoringEvaluation = _mapper.Map<MonitoringEvaluation>(updateMonitoringEvaluationRequest);
-//
-//             var monitoringEvaluationInDb = await _unitOfWork.MonitoringEvaluations.GetById(monitoringEvaluation.Id);
-//             if (monitoringEvaluationInDb == null)
-//                 return BadRequest("Monitoring Evaluation does not exist");
-//
-//             await _unitOfWork.MonitoringEvaluations.Update(monitoringEvaluation);
-//             await _unitOfWork.CompleteAsync();
-//         
-//             return Ok("Monitoring Evaluation updated successfully");
-//         }
-//         catch (Exception e)
-//         {
-//             return BadRequest(e.Message);
-//         }
-//     }
-//     
-//     [HttpDelete("{id}")]
-//     
-//     public async Task<IActionResult> DeleteMonitoringEvaluation(int id)
-//     {
-//         try
-//         {
-//             var monitoringEvaluation = await _unitOfWork.MonitoringEvaluations.GetById(id);
-//             if (monitoringEvaluation == null)
-//                 return BadRequest("Monitoring Evaluation does not exist");
-//
-//             await _unitOfWork.MonitoringEvaluations.Delete(id);
-//             await _unitOfWork.CompleteAsync();
-//         
-//             return Ok("Monitoring Evaluation deleted successfully");
-//         }
-//         catch (Exception e)
-//         {
-//             return BadRequest(e.Message);
-//         }
-//     }
-// }
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
+using ProjectFinance.Domain.Dtos.Responses.monitoringevaluation;
+using ProjectFinance.Domain.Entities;
+using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
+
+namespace ProjectFinance.API.Controllers;
+
+public class MonitoringEvaluationController : BaseController
+{
+    public MonitoringEvaluationController(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
+    {
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var monitoringEvaluations = _unitOfWork.MonitoringEvaluations.GetAll().Result
+            .Join(
+                _unitOfWork.Projects.GetAll().Result,
+                monitoringEvaluation => monitoringEvaluation.ProjectId,
+                project => project.Id,
+                (monitoringEvaluation, project) => new { monitoringEvaluation, project })
+            .Join(
+                _unitOfWork.Activities.GetAll().Result,
+                monitoringEvaluationProject => monitoringEvaluationProject.monitoringEvaluation.ActivityId,
+                activity => activity.Id,
+                (monitoringEvaluationProject, activity) => new MonitoringEvaluationResponse()
+                {
+                    Id = monitoringEvaluationProject.monitoringEvaluation.Id,
+                    ProjectId = monitoringEvaluationProject.monitoringEvaluation.ProjectId,
+                    ActivityId = monitoringEvaluationProject.monitoringEvaluation.ActivityId,
+                    workDone = monitoringEvaluationProject.monitoringEvaluation.workDone,
+                    Note = monitoringEvaluationProject.monitoringEvaluation.Note,
+                    ProjectName = monitoringEvaluationProject.project.Name,
+                    ActivityName = activity.Name
+
+                }
+            );
+        
+        return Ok(monitoringEvaluations);
+    }
+    
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var monitoringEvaluation = await _unitOfWork.MonitoringEvaluations.GetById(id);
+        if (monitoringEvaluation == null)
+            return NotFound();
+        
+        var monitoringEvaluationResponse = _mapper.Map<MonitoringEvaluationResponse>(monitoringEvaluation);
+        return Ok(monitoringEvaluationResponse);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Create(MonitoringEvaluationCreateRequest monitoringEvaluationRequest)
+    {
+        try
+        {
+            var monitoringEvaluation = _mapper.Map<MonitoringEvaluation>(monitoringEvaluationRequest);
+            await _unitOfWork.MonitoringEvaluations.Add(monitoringEvaluation);
+            await _unitOfWork.CompleteAsync();
+        
+            return Ok("Monitoring Evaluation created successfully");
+        }
+        catch (Exception e)
+        {
+            return BadRequest($"Error creating monitoring evaluation record: {e.Message}");
+        }
+    }
+    
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(int id, MonitoringEvaluationUpdateRequest monitoringEvaluationRequest)
+    {
+        try
+        {
+            var monitoringEvaluation = await _unitOfWork.MonitoringEvaluations.GetById(id);
+            if (monitoringEvaluation == null)
+                return NotFound();
+            
+            var monitoringEvaluationToUpdate = _mapper.Map<MonitoringEvaluation>(monitoringEvaluationRequest);
+            await _unitOfWork.MonitoringEvaluations.Update(monitoringEvaluationToUpdate);
+            await _unitOfWork.CompleteAsync();
+        
+            return Ok("Monitoring Evaluation updated successfully");
+        }
+        catch (Exception e)
+        {
+            return BadRequest($"Error updating monitoring evaluation record: {e.Message}");
+        }
+    }
+    
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        try
+        {
+            var monitoringEvaluation = await _unitOfWork.MonitoringEvaluations.GetById(id);
+            if (monitoringEvaluation == null)
+                return NotFound();
+            
+            await _unitOfWork.MonitoringEvaluations.Delete(id);
+            await _unitOfWork.CompleteAsync();
+        
+            return Ok("Monitoring Evaluation deleted successfully");
+        }
+        catch (Exception e)
+        {
+            return BadRequest($"Error deleting monitoring evaluation record: {e.Message}");
+        }
+    }
+}

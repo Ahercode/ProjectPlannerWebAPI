@@ -17,7 +17,7 @@ public class RequestToDoamin : Profile
         CreateMap<CommonCreateRequest, CostCategory>().ReverseMap();
         CreateMap<CommonUpdateRequest, CostCategory>().ReverseMap();
         CreateMap<ActivityCreateRequest, Activity>().ReverseMap();
-        CreateMap<CommonUpdateRequest, Activity>().ReverseMap();
+        CreateMap<ActivityUpdateRequest, Activity>().ReverseMap();
         CreateMap<ClientCreateRequest, Client>().ReverseMap();
         CreateMap<ClientUpdateRequest, Client>().ReverseMap();
         CreateMap<CostDetailCreateRequest, CostDetail>().ReverseMap();
@@ -28,8 +28,8 @@ public class RequestToDoamin : Profile
         CreateMap<UpdateFinanceOptionScheduleRequest, FinanceOptionSchedule>().ReverseMap();
         CreateMap<InvoiceCreateRequest, Invoice>().ReverseMap();
         CreateMap<UpdateInvoiceRequest, Invoice>().ReverseMap();
-        CreateMap<MonitoringEvaluationRequest, MonitoringEvaluation>().ReverseMap();
-        CreateMap<UpdateMonitoringEvaluationRequest, MonitoringEvaluation>().ReverseMap();
+        CreateMap<MonitoringEvaluationCreateRequest, MonitoringEvaluation>().ReverseMap();
+        CreateMap<MonitoringEvaluationUpdateRequest, MonitoringEvaluation>().ReverseMap();
         CreateMap<PaymentCreateRequest, Payment>().ReverseMap();
         CreateMap<UpdatePaymentRequest, Payment>().ReverseMap();
         CreateMap<POPayScheduleRequest, POPaySchedule>().ReverseMap();

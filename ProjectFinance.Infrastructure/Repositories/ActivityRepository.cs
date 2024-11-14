@@ -59,6 +59,7 @@ public class ActivityRepository : GenericRepository<Activity>, IActivityReposito
             activity.Id = activityEntity.Id;
             activity.Name = activityEntity.Name;
             activity.Code = activityEntity.Code;
+            activity.Description = activityEntity.Description;
             
             return true;
 
