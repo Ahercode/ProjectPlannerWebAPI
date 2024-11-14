@@ -19,5 +19,5 @@ public partial class CostCategory
     public string? Name { get; set; }
 
     [InverseProperty("CostCategory")]
-    public virtual ICollection<CostDetail> CostDetails { get; } = new List<CostDetail>();
+    public virtual ICollection<CostDetail> CostDetails { get; set; } = new List<CostDetail>();
 }

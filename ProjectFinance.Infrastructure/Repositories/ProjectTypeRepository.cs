@@ -57,7 +57,7 @@ public class ProjectTypeRepository : GenericRepository<ProjectType>, IProjectTyp
             
             projectType.Id = projectTypeEntity.Id;
             projectType.Name = projectTypeEntity.Name;
-            // projectType.Description = projectTypeEntity.Description;
+            projectType.Code = projectTypeEntity.Code;
             
             return true;
         }

@@ -67,4 +67,23 @@ public class SupplierRepository : GenericRepository<Supplier>, ISupplierReposito
             throw;
         }
     }
+    
+    // delete
+    public override async Task<bool> Delete(int id)
+    {
+        try
+        {
+            var supplier = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            if (supplier == null)
+                return await Task.FromResult(false);
+
+            _dbSet.Remove(supplier);
+            return true;
+        }
+        catch (Exception e)
+        {
+            _Logger.LogError(e, "{Repo} Delete method error", typeof(SupplierRepository));
+            throw;
+        }
+    }
 }

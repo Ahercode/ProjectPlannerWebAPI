@@ -23,7 +23,8 @@ public interface IUnitOfWork
     IPurchaseOrderRepository PurchaseOrders { get; }
     ISatffRepository Staffs { get; }
     ISupplierRepository Suppliers { get; }
-    
+    IStakeHolderRepository StakeHolders { get; }
+    IContractorRepository Contractors { get; }
     
     Task<bool> CompleteAsync();
 }

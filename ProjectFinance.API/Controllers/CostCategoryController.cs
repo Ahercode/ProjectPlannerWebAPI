@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses;
 using ProjectFinance.Domain.Dtos.Responses.costcategory;
 using ProjectFinance.Domain.Entities;
@@ -37,7 +38,6 @@ public class CostCategoryController : BaseController
     }
     
     [HttpPost]
-    
     public async Task<IActionResult> CreateCost(CommonCreateRequest createCostRequest)
     {
         if(!ModelState.IsValid)
@@ -46,13 +46,6 @@ public class CostCategoryController : BaseController
         try
         {
             var cost = _mapper.Map<CostCategory>(createCostRequest);
-
-            if (cost.Code != null)
-            {
-                var costInDb = await _unitOfWork.CostCategories.GetByCode(cost.Code);
-                if (costInDb != null)
-                    return BadRequest("Cost already exists");
-            }
 
             await _unitOfWork.CostCategories.Add(cost);
             await _unitOfWork.CompleteAsync();
@@ -66,9 +59,9 @@ public class CostCategoryController : BaseController
         }
     }
     
-    [HttpPut]
+    [HttpPut("{id}")]
     
-    public async Task<IActionResult> UpdateCost(CostCategoryResponse updateCostRequest)
+    public async Task<IActionResult> UpdateCost(CommonUpdateRequest updateCostRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -81,10 +74,9 @@ public class CostCategoryController : BaseController
             if (costInDb == null)
                 return BadRequest("Cost not found");
 
-            costInDb.Name = cost.Name;
-            costInDb.Code = cost.Code;
-            // costInDb.Description = cost.Description;
+            var costCategory = _mapper.Map<CostCategory>(updateCostRequest);
 
+            await _unitOfWork.CostCategories.Update(costCategory);
             await _unitOfWork.CompleteAsync();
         
             return Ok("Cost updated successfully");

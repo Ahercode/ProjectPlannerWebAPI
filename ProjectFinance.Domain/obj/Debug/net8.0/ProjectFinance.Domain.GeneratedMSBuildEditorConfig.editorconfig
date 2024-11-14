@@ -16,6 +16,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ProjectFinance.Domain
-build_property.ProjectDir = C:\Users\DAY\Desktop\react\ProjectPlannerWebAPI\ProjectFinance.Domain\
+build_property.ProjectDir = /Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

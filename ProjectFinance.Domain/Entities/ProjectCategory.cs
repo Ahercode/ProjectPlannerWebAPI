@@ -19,5 +19,5 @@ public partial class ProjectCategory
     public string? Name { get; set; }
 
     [InverseProperty("ProjectCategory")]
-    public virtual ICollection<Project> Projects { get; } = new List<Project>();
+    public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
 }

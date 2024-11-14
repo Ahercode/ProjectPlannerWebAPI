@@ -55,9 +55,9 @@ public class PaymentRepository : GenericRepository<Payment>, IPaymentRepository
             
             payment.Id = paymentEntity.Id;
             payment.Amount = paymentEntity.Amount;
-            // payment.CurrencyId = paymentEntity.CurrencyId;
-            // payment.PaymentDate = paymentEntity.PaymentDate;
-            // payment.ProjectId = paymentEntity.ProjectId;
+            payment.InvoiceNumber = paymentEntity.InvoiceNumber;
+            payment.PayeeName = paymentEntity.PayeeName;
+            
             
             return true;
         }

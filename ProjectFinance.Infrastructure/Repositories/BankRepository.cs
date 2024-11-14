@@ -67,7 +67,6 @@ public class BankRepository : GenericRepository<Bank> , IBankRepository
         }
     }
     
-    
     public override async Task<bool> Delete(int id)
     {
         try
@@ -75,6 +74,9 @@ public class BankRepository : GenericRepository<Bank> , IBankRepository
            var bank = await _dbSet.FirstOrDefaultAsync(x=>x.Id == id);
            if(bank == null)
                return false;
+           
+           _dbSet.Remove(bank);
+           
            return true;
 
         }

@@ -54,14 +54,31 @@ public class ProjectCategoryRepository: GenericRepository<ProjectCategory>, IPro
 
             projectCategory.Id = projectCategoryEntity.Id;
             projectCategory.Name = projectCategoryEntity.Name;
-            // projectCategory.Description = projectCategoryEntity.Description;
-            // projectCategory.IsActive = projectCategoryEntity.IsActive;
+            projectCategory.Code = projectCategoryEntity.Code;
 
             return true;
         }
         catch (Exception e)
         {
             _Logger.LogError(e, "{Repo} Update method error", typeof(ProjectCategoryRepository));
+            throw;
+        }
+    }
+    
+    public override async Task<bool> Delete(int id)
+    {
+        try
+        {
+            var projectCategory = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            if (projectCategory == null)
+                return await Task.FromResult(false);
+
+            _dbSet.Remove(projectCategory);
+            return true;
+        }
+        catch (Exception e)
+        {
+            _Logger.LogError(e, "{Repo} Delete method error", typeof(ProjectCategoryRepository));
             throw;
         }
     }

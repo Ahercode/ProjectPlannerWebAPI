@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses;
 using ProjectFinance.Domain.Dtos.Responses.financeoption;
 using ProjectFinance.Domain.Entities;
@@ -15,20 +16,36 @@ public class FinanceOptionSchedulesController : BaseController
     }
    
    [HttpGet("")]
-   public async Task<IActionResult> GetAllFinanceOptionSchedules()
+   public  Task<IActionResult> GetAllFinanceOptionSchedules()
    {
-       var financeOptionSchedules = await _unitOfWork.FinanceOptionSchedules.GetAll();
-       var financeOptionSchedulesDto = _mapper.Map<IEnumerable<CommonResponse>>(financeOptionSchedules);
+       var financeOptionSchedules = _unitOfWork.FinanceOptionSchedules.GetAll().Result.Join(
+           _unitOfWork.FinanceOptions.GetAll().Result,
+           financeOptionSchedule => financeOptionSchedule.FinanceOptionId,
+           financeOp => financeOp.Id,
+           (financeOptionSchedule, financeOp) => new FinanceOptionScheduleResponse
+           {
+               Id = financeOptionSchedule.Id,
+               FinanceOptionId = financeOptionSchedule.FinanceOptionId,
+               FinanceOptionName = financeOp.Description,
+               Date = financeOptionSchedule.Date,
+               Cost = financeOptionSchedule.Cost,
+               Repayment = financeOptionSchedule.Repayment,
+               Disbursement = financeOptionSchedule.Disbursement
        
-       return Ok(financeOptionSchedulesDto);
+           }
+       );
+       
+       return Task.FromResult<IActionResult>(Ok(financeOptionSchedules));
+       // var financeOptionSchedules = await _unitOfWork.FinanceOptionSchedules.GetAll();
+       //   var financeOptionSchedulesDto = _mapper.Map<IEnumerable<FinanceOptionScheduleResponse>>(financeOptionSchedules);
+       //      return Ok(financeOptionSchedulesDto);
    }
    
    [HttpGet("{id}")]
-   
    public async Task<IActionResult> GetAFinanceOptionSchedule(int id)
    {
        var financeOptionSchedule = await _unitOfWork.FinanceOptionSchedules.GetById(id);
-       var financeOptionScheduleDto = _mapper.Map<CommonResponse>(financeOptionSchedule);
+       var financeOptionScheduleDto = _mapper.Map<FinanceOptionScheduleResponse>(financeOptionSchedule);
        
        if(financeOptionScheduleDto == null)
            return NotFound("FinanceOptionSchedule not found");
@@ -37,8 +54,7 @@ public class FinanceOptionSchedulesController : BaseController
    }
    
    [HttpPost]
-   
-   public async Task<IActionResult> CreateFinanceOptionSchedule(CommonCreateRequest createFinanceOptionScheduleRequest)
+   public async Task<IActionResult> CreateFinanceOptionSchedule(FinanceOptionScheduleCreateRequest createFinanceOptionScheduleRequest)
    {
        if(!ModelState.IsValid)
            return BadRequest("Invalid data provided");
@@ -46,13 +62,6 @@ public class FinanceOptionSchedulesController : BaseController
        try
        {
            var financeOptionSchedule = _mapper.Map<FinanceOptionSchedule>(createFinanceOptionScheduleRequest);
-
-           if (financeOptionSchedule.FinanceOptionId != null)
-           {
-               var financeOptionScheduleInDb = await _unitOfWork.FinanceOptionSchedules.GetByFinanceOptionId(financeOptionSchedule.FinanceOptionId);
-               if (financeOptionScheduleInDb != null)
-                   return BadRequest("FinanceOptionSchedule already exists");
-           }
 
            await _unitOfWork.FinanceOptionSchedules.Add(financeOptionSchedule);
            await _unitOfWork.CompleteAsync();
@@ -66,8 +75,7 @@ public class FinanceOptionSchedulesController : BaseController
    }
    
    [HttpPut("{id}")]
-   
-   public async Task<IActionResult> UpdateFinanceOptionSchedule(int id, FinanceOptionResponse updateFinanceOptionScheduleRequest)
+   public async Task<IActionResult> UpdateFinanceOptionSchedule(int id, UpdateFinanceOptionScheduleRequest updateFinanceOptionScheduleRequest)
    {
        if(!ModelState.IsValid)
            return BadRequest("Invalid data provided");
@@ -77,8 +85,10 @@ public class FinanceOptionSchedulesController : BaseController
            var financeOptionSchedule = await _unitOfWork.FinanceOptionSchedules.GetById(id);
            if(financeOptionSchedule == null)
                return NotFound("FinanceOptionSchedule not found");
-
-           _mapper.Map(updateFinanceOptionScheduleRequest, financeOptionSchedule);
+           
+           var financeOptionScheduleDto = _mapper.Map<FinanceOptionSchedule>(updateFinanceOptionScheduleRequest);
+           
+           await _unitOfWork.FinanceOptionSchedules.Update(financeOptionScheduleDto);
            await _unitOfWork.CompleteAsync();
        
            return Ok("FinanceOptionSchedule updated successfully");
@@ -90,15 +100,14 @@ public class FinanceOptionSchedulesController : BaseController
    }
    
    [HttpDelete("{id}")]
-   
    public async Task<IActionResult> DeleteFinanceOptionSchedule(int id)
    {
        var financeOptionSchedule = await _unitOfWork.FinanceOptionSchedules.GetById(id);
        if(financeOptionSchedule == null)
            return NotFound("FinanceOptionSchedule not found");
 
-       // await _unitOfWork.FinanceOptionSchedules.Delete(financeOptionSchedule);
-       await _unitOfWork.CompleteAsync();
+        await _unitOfWork.FinanceOptionSchedules.Delete(financeOptionSchedule.Id);
+        await _unitOfWork.CompleteAsync();
        
        return Ok("FinanceOptionSchedule deleted successfully");
    }

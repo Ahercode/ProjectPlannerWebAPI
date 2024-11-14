@@ -28,6 +28,23 @@ public class ActivityRepository : GenericRepository<Activity>, IActivityReposito
             throw;
         }
     }
+
+    public override async Task<Activity?> GetByCode(string code)
+    {
+        try
+        {
+            return await _dbSet
+                .AsNoTracking()
+                .AsSplitQuery()
+                .FirstOrDefaultAsync(x => x.Code == code);
+        }
+        catch (Exception e)
+        {
+            _Logger.LogError(e, "{Repo} GetByCode method error", typeof(ActivityRepository));
+            throw;
+        }
+    }
+    
     
 
     public override async Task<bool> Update(Activity activityEntity)
@@ -39,9 +56,9 @@ public class ActivityRepository : GenericRepository<Activity>, IActivityReposito
             if (activity == null)
                 return await Task.FromResult(false);
 
-            activity.Id = activity.Id;
-            activity.Name = activity.Name;
-            activity.Code = activity.Code;
+            activity.Id = activityEntity.Id;
+            activity.Name = activityEntity.Name;
+            activity.Code = activityEntity.Code;
             
             return true;
 
@@ -52,5 +69,24 @@ public class ActivityRepository : GenericRepository<Activity>, IActivityReposito
             throw;
         }
 
+    }
+    
+    public override async Task<bool> Delete(int id)
+    {
+        try
+        {
+            var activity = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            if (activity == null)
+                return false;
+            
+            _dbSet.Remove(activity);
+            return true;
+
+        }
+        catch (Exception e)
+        {
+            _Logger.LogError(e, "{Repo} Delete method error", typeof(ActivityRepository));
+            throw;
+        }
     }
 }

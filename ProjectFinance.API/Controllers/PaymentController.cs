@@ -1,5 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses.payment;
 using ProjectFinance.Domain.Entities;
 using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
@@ -13,12 +15,10 @@ public class PaymentController : BaseController
         }
         
         [HttpGet("")]
-        
         public async Task<IActionResult> GetAllPayments()
         {
             var payments = await _unitOfWork.Payments.GetAll();
             var paymentsDto = _mapper.Map<IEnumerable<PaymentResponse>>(payments);
-            
             return Ok(paymentsDto);
         }
         
@@ -37,7 +37,7 @@ public class PaymentController : BaseController
         
         [HttpPost]
         
-        public async Task<IActionResult> CreatePayment(PaymentResponse createPaymentRequest)
+        public async Task<IActionResult> CreatePayment(PaymentCreateRequest createPaymentRequest)
         {
             if(!ModelState.IsValid)
                 return BadRequest("Invalid data provided");
@@ -67,32 +67,28 @@ public class PaymentController : BaseController
         }
         
         [HttpPut("{id}")]
-        
-        public async Task<IActionResult> UpdatePayment(PaymentResponse updatePaymentRequest)
+        public async Task<IActionResult> UpdatePayment(int id, UpdatePaymentRequest updatePaymentRequest)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data provided");
     
             try
             {
-                var payment = _mapper.Map<Payment>(updatePaymentRequest);
-    
-                if (payment.Id == null)
-                    return BadRequest("Payment does not exist");
-    
-                var paymentInDb = await _unitOfWork.Payments.GetById(payment.Id);
+                var paymentInDb = await _unitOfWork.Payments.GetById(id);
                 if (paymentInDb == null)
                     return BadRequest("Payment does not exist");
+                
+                var payment = _mapper.Map<Payment>(updatePaymentRequest);
     
-                _unitOfWork.Payments.Update(payment);
+                await _unitOfWork.Payments.Update(payment);
                 await _unitOfWork.CompleteAsync();
+                
+                return Ok("Payment updated successfully");
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-    
-            return Ok();
         }
         
         

@@ -74,6 +74,7 @@ public class CostCategoryRepository : GenericRepository<CostCategory> , ICostCat
             if(costCategory == null)
                 return await Task.FromResult(false);
             
+            _dbSet.Remove(costCategory);
             return true;
         }
         catch (Exception e)

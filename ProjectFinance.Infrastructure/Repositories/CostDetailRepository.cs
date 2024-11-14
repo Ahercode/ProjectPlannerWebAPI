@@ -75,6 +75,7 @@ public class CostDetailRepository : GenericRepository<CostDetail>, ICostDetailRe
             if(costDetail == null)
                 return await Task.FromResult(false);
             
+            _dbSet.Remove(costDetail);
             return true;
         }
         catch (Exception e)

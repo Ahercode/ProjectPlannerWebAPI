@@ -7,4 +7,6 @@ public class CostDetailResponse
     public string? Code { get; set; }
     
     public string? Name { get; set; }
+    public int? CostCategoryId { get; set; }
+    public string? CostCategoryName { get; set; }
 }

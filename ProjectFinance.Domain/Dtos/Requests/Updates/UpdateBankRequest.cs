@@ -1,7 +1,6 @@
 namespace ProjectFinance.Domain.Dtos.Requests.Updates;
 
-public class UpdateBankRequest
+public class UpdateBankRequest : CommonUpdateRequest
 {
-    public string Name { get; set; }
-    public string Code { get; set; }
+    
 }

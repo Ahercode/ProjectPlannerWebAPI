@@ -18,6 +18,11 @@ public partial class Activity
     [StringLength(50)]
     public string? Name { get; set; }
 
+    public string? Description { get; set; }
+
     [InverseProperty("Activity")]
-    public virtual ICollection<ProjectActivity> ProjectActivities { get; } = new List<ProjectActivity>();
+    public virtual ICollection<MonitoringEvaluation> MonitoringEvaluations { get; set; } = new List<MonitoringEvaluation>();
+
+    [InverseProperty("Activity")]
+    public virtual ICollection<ProjectActivity> ProjectActivities { get; set; } = new List<ProjectActivity>();
 }

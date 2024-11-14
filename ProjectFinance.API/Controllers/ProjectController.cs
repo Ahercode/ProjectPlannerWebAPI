@@ -16,10 +16,57 @@ public class ProjectController : BaseController
     
     public async Task<IActionResult> GetAllProjects()
     {
-        var projects = await _unitOfWork.Projects.GetAll();
-        var projectsDto = _mapper.Map<IEnumerable<ProjectResponse>>(projects);
+        var projects = _unitOfWork.Projects.GetAll().Result.Join(
+                _unitOfWork.Clients.GetAll().Result,
+                project => project.ClientId,
+                client => client.Id,
+                (project, client) => new { project, client }
+            ).Join(
+                _unitOfWork.ProjectTypes.GetAll().Result,
+                projectClient => projectClient.project.ProjectTypeId,
+                projectType => projectType.Id,
+                (projectClient, projectType) => new { projectClient, projectType }
+            ).Join(
+                _unitOfWork.Contractors.GetAll().Result,
+                projectClientProjectType => projectClientProjectType.projectClient.project.ContractorId,
+                contractor => contractor.id,
+                (projectClientProjectType, contractor) => new { projectClientProjectType, contractor })
+            .Join(
+                _unitOfWork.Currencies.GetAll().Result,
+                projectClientProjectTypeContractor => projectClientProjectTypeContractor.projectClientProjectType
+                    .projectClient.project.CurrencyId,
+                currency => currency.Id,
+                (projectClientProjectTypeContractor, currency) => new { projectClientProjectTypeContractor, currency })
+            .Join(
+                _unitOfWork.ProjectCategories.GetAll().Result,
+                projectClientProjectTypeContractorCurrency => projectClientProjectTypeContractorCurrency.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.ProjectCategoryId,
+                projectCategory => projectCategory.Id,
+                (p, projectCategory) => new ProjectResponse()
+                {
+                    Id = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.Id,
+                    Name = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.Name,
+                    Code = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.Code,
+                    ProjectTypeId = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.ProjectTypeId,
+                    ProjectTypeName = p.projectClientProjectTypeContractor.projectClientProjectType.projectType.Name,
+                    ProjectCategoryId = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.ProjectCategoryId,
+                    ProjectCategoryName = projectCategory.Name,
+                    ClientId = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.ClientId,
+                    ClientName = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.client.Name,
+                    ContractorId = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.ContractorId,
+                    ContractorName = p.projectClientProjectTypeContractor.contractor.name,
+                    CurrencyId = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.CurrencyId,
+                    CurrencyName = p.currency.Name,
+                    StartDate = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.StartDate,
+                    EndDate = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.EndDate,
+                    ContractSum = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.ContractSum,
+                    Note = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.Note,
+                    Status = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.Status,
+                    Location = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.Location,
+                    ProjectPriority = p.projectClientProjectTypeContractor.projectClientProjectType.projectClient.project.ProjectPriority,
+                    
+                });
         
-        return Ok(projectsDto);
+        return await Task.FromResult<IActionResult>(Ok(projects));
     }
     
     [HttpGet("{id}")]
@@ -36,7 +83,6 @@ public class ProjectController : BaseController
     }
     
     [HttpPost]
-    
     public async Task<IActionResult> CreateProject(ProjectResponse createProjectRequest)
     {
         if(!ModelState.IsValid)

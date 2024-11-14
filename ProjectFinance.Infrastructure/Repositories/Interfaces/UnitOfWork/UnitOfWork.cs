@@ -18,20 +18,22 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         CostCategories = new CostCategoryRepository(context, logger);
         CostDetails = new CostDetailRepository(context, logger);
         Currencies = new CurrencyRepository(context, logger);
-        // FinanceOptionSchedules = new FinanceOptionScheduleRepository(context, logger);
+        FinanceOptionSchedules = new FinanceOptionScheduleRepository(context, logger);
         Invoices = new InvoiceRepository(context, logger);
         MonitoringEvaluations = new MonitoringEvaluationRepository(context, logger);
         Payments = new PaymentRepository(context, logger);
         POPaySchedules = new POPayScheduleRepository(context, logger);
         Projects = new ProjectRepository(context, logger);
         ProjectCategories = new ProjectCategoryRepository(context, logger);
-        // ProjectActivities = new ProjectActivityRepository(context, logger);
+        ProjectActivities = new ProjectActivityRepository(context, logger);
         ProjectActivityCosts = new ProjectActivityCostRepository(context, logger);
-        // ProjectSchedules = new ProjectScheduleRepository(context, logger);
+        ProjectSchedules = new ProjectScheduleRepository(context, logger);
         ProjectTypes = new ProjectTypeRepository(context, logger);
         PurchaseOrders = new PurchaseOrderRepository(context, logger);
         Staffs = new StaffRepository(context, logger);
         Suppliers = new SupplierRepository(context, logger);
+        StakeHolders = new StakeHolderRepository(context, logger);
+        Contractors = new ContractorRepository(context, logger);
        
     }
 
@@ -56,6 +58,8 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public IPurchaseOrderRepository PurchaseOrders { get; }
     public ISatffRepository Staffs { get; }
     public ISupplierRepository Suppliers { get; }
+    public IStakeHolderRepository StakeHolders { get; }
+    public IContractorRepository Contractors { get; }
     
     
     

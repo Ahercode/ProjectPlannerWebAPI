@@ -22,6 +22,8 @@ public partial class ProjectFinanceContext : DbContext
 
     public virtual DbSet<Client> Clients { get; set; }
 
+    public virtual DbSet<Contractor> Contractors { get; set; }
+
     public virtual DbSet<CostCategory> CostCategories { get; set; }
 
     public virtual DbSet<CostDetail> CostDetails { get; set; }
@@ -48,6 +50,8 @@ public partial class ProjectFinanceContext : DbContext
 
     public virtual DbSet<ProjectCategory> ProjectCategories { get; set; }
 
+    public virtual DbSet<ProjectDocument> ProjectDocuments { get; set; }
+
     public virtual DbSet<ProjectSchedule> ProjectSchedules { get; set; }
 
     public virtual DbSet<ProjectType> ProjectTypes { get; set; }
@@ -56,8 +60,11 @@ public partial class ProjectFinanceContext : DbContext
 
     public virtual DbSet<Staff> Staff { get; set; }
 
-    public virtual DbSet<Supplier> Suppliers { get; set; }
+    public virtual DbSet<StakeHolder> StakeHolders { get; set; }
 
+    public virtual DbSet<Supplier> Suppliers { get; set; }
+    
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Activity>(entity =>
@@ -74,6 +81,12 @@ public partial class ProjectFinanceContext : DbContext
         {
             entity.Property(e => e.Code).IsFixedLength();
             entity.Property(e => e.Phone).IsFixedLength();
+        });
+
+        modelBuilder.Entity<Contractor>(entity =>
+        {
+            entity.Property(e => e.code).IsFixedLength();
+            entity.Property(e => e.phone).IsFixedLength();
         });
 
         modelBuilder.Entity<CostCategory>(entity =>
@@ -114,6 +127,8 @@ public partial class ProjectFinanceContext : DbContext
 
         modelBuilder.Entity<MonitoringEvaluation>(entity =>
         {
+            entity.Property(e => e.workDone).IsFixedLength();
+
             entity.HasOne(d => d.Activity).WithMany(p => p.MonitoringEvaluations).HasConstraintName("FK_MonitoringEvaluation_MonitoringEvaluation");
         });
 
@@ -129,6 +144,8 @@ public partial class ProjectFinanceContext : DbContext
             entity.Property(e => e.Code).IsFixedLength();
 
             entity.HasOne(d => d.Client).WithMany(p => p.Projects).HasConstraintName("FK_Project_Client");
+
+            entity.HasOne(d => d.Contractor).WithMany(p => p.Projects).HasConstraintName("FK_Project_Contractor");
 
             entity.HasOne(d => d.Currency).WithMany(p => p.Projects).HasConstraintName("FK_Project_Currency");
 
@@ -159,11 +176,6 @@ public partial class ProjectFinanceContext : DbContext
         modelBuilder.Entity<ProjectSchedule>(entity =>
         {
             entity.HasOne(d => d.Project).WithMany(p => p.ProjectSchedules).HasConstraintName("FK_ProjectSchedule_Project");
-        });
-
-        modelBuilder.Entity<ProjectType>(entity =>
-        {
-            entity.Property(e => e.Code).IsFixedLength();
         });
 
         modelBuilder.Entity<Staff>(entity =>

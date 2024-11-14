@@ -1,5 +1,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
+using ProjectFinance.Domain.Dtos.Responses;
 using ProjectFinance.Domain.Dtos.Responses.projecttype;
 using ProjectFinance.Domain.Entities;
 using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
@@ -17,7 +20,7 @@ public class ProjectTypeController : BaseController
     public async Task<IActionResult> GetAllProjectTypes()
     {
         var projectTypes = await _unitOfWork.ProjectTypes.GetAll();
-        var projectTypesDto = _mapper.Map<IEnumerable<ProjectTypeResponse>>(projectTypes);
+        var projectTypesDto = _mapper.Map<IEnumerable<CommonResponse>>(projectTypes);
         
         return Ok(projectTypesDto);
     }
@@ -27,7 +30,7 @@ public class ProjectTypeController : BaseController
     public async Task<IActionResult> GetAProjectType(int id)
     {
         var projectType = await _unitOfWork.ProjectTypes.GetById(id);
-        var projectTypeDto = _mapper.Map<ProjectTypeResponse>(projectType);
+        var projectTypeDto = _mapper.Map<CommonResponse>(projectType);
         
         if(projectTypeDto == null)
             return NotFound("ProjectType not found");
@@ -37,7 +40,7 @@ public class ProjectTypeController : BaseController
 
     [HttpPost]
 
-    public async Task<IActionResult> CreateProjectType(ProjectTypeResponse createProjectTypeRequest)
+    public async Task<IActionResult> CreateProjectType(CommonCreateRequest createProjectTypeRequest)
     {
         if (!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -46,29 +49,20 @@ public class ProjectTypeController : BaseController
         {
             var projectType = _mapper.Map<ProjectType>(createProjectTypeRequest);
 
-            if (projectType.Id != null)
-            {
-                var projectTypeInDb = await _unitOfWork.ProjectTypes.GetById(projectType.Id);
-                if (projectTypeInDb != null)
-                    return BadRequest("ProjectType already exists");
-            }
-
             await _unitOfWork.ProjectTypes.Add(projectType);
             await _unitOfWork.CompleteAsync();
+            
+            return Ok("ProjectType created successfully");
         }
         catch (Exception e)
         {
             return BadRequest(e.Message);
         }
 
-
-        return Ok();
-
     }
     
     [HttpPut("{id}")]
-    
-    public async Task<IActionResult> UpdateProjectType(int id, ProjectTypeResponse updateProjectTypeRequest)
+    public async Task<IActionResult> UpdateProjectType(int id, CommonUpdateRequest  updateProjectTypeRequest)
     {
         if (!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -79,19 +73,20 @@ public class ProjectTypeController : BaseController
             if (projectType == null)
                 return NotFound("ProjectType not found");
             
-            _mapper.Map(updateProjectTypeRequest, projectType);
+            var projectTypeToUpdate = _mapper.Map<ProjectType>(updateProjectTypeRequest);
+            
+            await _unitOfWork.ProjectTypes.Update(projectTypeToUpdate);
             await _unitOfWork.CompleteAsync();
+            
+            return Ok("ProjectType updated successfully");
         }
         catch (Exception e)
         {
             return BadRequest(e.Message);
         }
-        
-        return Ok();
     }
     
     [HttpDelete("{id}")]
-    
     public async Task<IActionResult> DeleteProjectType(int id)
     {
         var projectType = await _unitOfWork.ProjectTypes.GetById(id);
@@ -101,6 +96,6 @@ public class ProjectTypeController : BaseController
         await _unitOfWork.ProjectTypes.Delete(id);
         await _unitOfWork.CompleteAsync();
         
-        return Ok();
+        return Ok("ProjectType deleted successfully");
     }
 }

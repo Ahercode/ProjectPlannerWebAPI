@@ -8074,32 +8074,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DAY\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages": {}
+    "/Users/philip/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.Domain\\ProjectFinance.Domain.csproj",
+      "projectUniqueName": "/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/ProjectFinance.Domain.csproj",
       "projectName": "ProjectFinance.Domain",
-      "projectPath": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.Domain\\ProjectFinance.Domain.csproj",
-      "packagesPath": "C:\\Users\\DAY\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DAY\\Desktop\\react\\ProjectPlannerWebAPI\\ProjectFinance.Domain\\obj\\",
+      "projectPath": "/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/ProjectFinance.Domain.csproj",
+      "packagesPath": "/Users/philip/.nuget/packages/",
+      "outputPath": "/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\DAY\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/philip/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8112,6 +8104,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -8167,7 +8164,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

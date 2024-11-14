@@ -15,12 +15,25 @@ public class CostDetailController : BaseController
     }
     
     [HttpGet("")]
-    public async Task<IActionResult> GetAllCostDetails()
+    public Task<IActionResult> GetAllCostDetails()
     {
-        var costDetails = await _unitOfWork.CostDetails.GetAll();
-        var costDetailsDto = _mapper.Map<IEnumerable<CostDetailResponse>>(costDetails);
+        var costDetails =  _unitOfWork.CostDetails.GetAll().Result.Join(
+            
+            _unitOfWork.CostCategories.GetAll().Result,
+            costDetail => costDetail.CostCategoryId,
+            costCategory => costCategory.Id,
+            (costDetail, costCategory) => new CostDetailResponse
+            {
+                Id = costDetail.Id,
+                Code = costDetail.Code,
+                Name = costDetail.Name,
+                CostCategoryId = costDetail.CostCategoryId,
+                CostCategoryName = costCategory.Name
+            }
+        );
         
-        return Ok(costDetailsDto);
+        
+        return Task.FromResult<IActionResult>(Ok(costDetails));
     }
     
     [HttpGet("{id}")]
@@ -38,7 +51,7 @@ public class CostDetailController : BaseController
     
     [HttpPost]
     
-    public async Task<IActionResult> CreateCostDetail(CommonCreateRequest createCostDetailRequest)
+    public async Task<IActionResult> CreateCostDetail(CostDetailCreateRequest createCostDetailRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -46,13 +59,6 @@ public class CostDetailController : BaseController
         try
         {
             var costDetail = _mapper.Map<CostDetail>(createCostDetailRequest);
-
-            if (costDetail.Code != null)
-            {
-                var costDetailInDb = await _unitOfWork.CostDetails.GetByCode(costDetail.Code);
-                if (costDetailInDb != null)
-                    return BadRequest("CostDetail already exists");
-            }
 
             await _unitOfWork.CostDetails.Add(costDetail);
             await _unitOfWork.CompleteAsync();
@@ -68,7 +74,7 @@ public class CostDetailController : BaseController
     
     [HttpPut("{id}")]
     
-    public async Task<IActionResult> UpdateCostDetail(int id, CommonUpdateRequest updateCostDetailRequest)
+    public async Task<IActionResult> UpdateCostDetail(int id, CostDetailUpdateRequest updateCostDetailRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -78,8 +84,9 @@ public class CostDetailController : BaseController
         if(costDetail == null)
             return NotFound("CostDetail not found");
 
-        _mapper.Map(updateCostDetailRequest, costDetail);
-
+        var costDetailToUpdate = _mapper.Map<CostDetail>(updateCostDetailRequest);
+        
+        await _unitOfWork.CostDetails.Update(costDetailToUpdate);
         await _unitOfWork.CompleteAsync();
 
         return Ok("CostDetail updated successfully");

@@ -82,4 +82,23 @@ public class FinanceOptionRepository : GenericRepository<FinanceOption>, IFinanc
             throw;
         }
     }
+    
+    public override async Task<bool> Delete(int id)
+    {
+        try
+        {
+            var financeOption = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            if (financeOption == null)
+                return await Task.FromResult(false);
+
+            _dbSet.Remove(financeOption);
+            return true;
+        }
+        catch (Exception e)
+        {
+            _Logger.LogError(e, "{Repo} Delete method error", typeof(FinanceOptionRepository));
+            throw;
+        }
+    }
+
 }

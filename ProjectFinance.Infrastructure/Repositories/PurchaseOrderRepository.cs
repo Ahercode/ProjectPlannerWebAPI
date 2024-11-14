@@ -54,11 +54,12 @@ public class PurchaseOrderRepository : GenericRepository<PurchaseOrder>, IPurcha
              return await Task.FromResult(false);
 
          purchaseOrder.Id = purchaseOrderEntity.Id;
-         // purchaseOrder.PurchaseOrderNumber = purchaseOrderEntity.PurchaseOrderNumber;
-         // purchaseOrder.PurchaseOrderDate = purchaseOrderEntity.PurchaseOrderDate;
+         purchaseOrder.PONumber = purchaseOrderEntity.PONumber;
+         purchaseOrder.Date = purchaseOrderEntity.Date;
          purchaseOrder.SupplierId = purchaseOrderEntity.SupplierId;
-         // purchaseOrder.CurrencyId = purchaseOrderEntity.CurrencyId;
+         purchaseOrder.ActivityId = purchaseOrderEntity.ActivityId;
          purchaseOrder.ProjectId = purchaseOrderEntity.ProjectId;
+         purchaseOrder.CostDetailId = purchaseOrderEntity.CostDetailId;
          purchaseOrder.Amount = purchaseOrderEntity.Amount;
 
          return true;

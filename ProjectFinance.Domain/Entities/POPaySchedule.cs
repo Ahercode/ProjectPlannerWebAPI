@@ -17,8 +17,7 @@ public partial class POPaySchedule
     [Column(TypeName = "decimal(18, 2)")]
     public decimal? Amount { get; set; }
 
-    [Column(TypeName = "date")]
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
 
     [ForeignKey("POId")]
     [InverseProperty("POPaySchedules")]

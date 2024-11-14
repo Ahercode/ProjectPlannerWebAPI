@@ -1,0 +1,15 @@
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/bin/Release/net8.0/ProjectFinance.Domain.deps.json
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/bin/Release/net8.0/ProjectFinance.Domain.runtimeconfig.json
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/bin/Release/net8.0/ProjectFinance.Domain.dll
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/bin/Release/net8.0/ProjectFinance.Domain.pdb
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ProjectFinance.Domain.csproj.AssemblyReference.cache
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ProjectFinance.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ProjectFinance.Domain.AssemblyInfoInputs.cache
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ProjectFinance.Domain.AssemblyInfo.cs
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ProjectFinance.Domain.csproj.CoreCompileInputs.cache
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ProjectFinance.Domain.sourcelink.json
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ProjectFinance.Domain.dll
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/refint/ProjectFinance.Domain.dll
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ProjectFinance.Domain.pdb
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ProjectFinance.Domain.genruntimeconfig.cache
+/Users/philip/RiderProjects/ProjectPlannerWebAPI/ProjectFinance.Domain/obj/Release/net8.0/ref/ProjectFinance.Domain.dll

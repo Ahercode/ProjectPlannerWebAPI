@@ -28,7 +28,7 @@ public class ClientController : BaseController
     public async Task<IActionResult> GetAClient(int id)
     {
         var client = await _unitOfWork.Clients.GetById(id);
-        var clientDto = _mapper.Map<CommonResponse>(client);
+        var clientDto = _mapper.Map<ClientResponse>(client);
         
         if(clientDto == null)
             return NotFound("Client not found");
@@ -37,50 +37,48 @@ public class ClientController : BaseController
     }
     
     [HttpPost]
-    public async Task<IActionResult> CreateClient(CommonCreateRequest createClientRequest)
+    public async Task<IActionResult> CreateClient(ClientCreateRequest createClientRequest)
     {
-        if(!ModelState.IsValid)
+        if (!ModelState.IsValid)
             return BadRequest("Invalid data provided");
 
         try
         {
             var client = _mapper.Map<Client>(createClientRequest);
 
-            if (client.Code != null)
-            {
-                var clientInDb = await _unitOfWork.Clients.GetByCode(client.Code);
-                if (clientInDb != null)
-                    return BadRequest("Client already exists");
-            }
+            // if (client.Code != null)
+            // {
+            //     var clientInDb = await _unitOfWork.Clients.GetByCode(client.Code);
+            //     if (clientInDb != null)
+            //         return BadRequest("Client already exists");
+            // }
 
             await _unitOfWork.Clients.Add(client);
             await _unitOfWork.CompleteAsync();
-        
+
             return Ok("Client created successfully");
-            
         }
         catch (Exception e)
         {
-            return BadRequest("An error occurred while creating the client");
+            return BadRequest($"An error occurred while creating the client {e}");
         }
     }
     
     [HttpPut("{id}")]
-    
-    public async Task<IActionResult> UpdateClient(int id, ClientResponse CommonUpdateRequest)
+    public async Task<IActionResult> UpdateClient(int id, ClientUpdateRequest clientUpdateRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
 
         try
         {
-            var client = await _unitOfWork.Clients.GetById(id);
-
-            if (client == null)
+            var clientInDb = await _unitOfWork.Clients.GetById(id);
+            if (clientInDb == null)
                 return NotFound("Client not found");
-
-            _mapper.Map(CommonUpdateRequest, client);
-
+            
+            var client =_mapper.Map<Client>(clientUpdateRequest);
+            
+            await _unitOfWork.Clients.Update(client);  
             await _unitOfWork.CompleteAsync();
         
             return Ok("Client updated successfully");
@@ -93,7 +91,6 @@ public class ClientController : BaseController
     }
     
     [HttpDelete("{id}")]
-    
     public async Task<IActionResult> DeleteClient(int id)
     {
         var client = await _unitOfWork.Clients.GetById(id);

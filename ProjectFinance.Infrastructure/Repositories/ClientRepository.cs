@@ -56,6 +56,10 @@ public class ClientRepository : GenericRepository<Client>, IClientRepository
             client.Id = clientEntity.Id;
             client.Name = clientEntity.Name;
             client.Code = clientEntity.Code;
+            client.Email = clientEntity.Email;
+            client.Address = clientEntity.Address;
+            client.Phone = clientEntity.Phone;
+            
             
             return true;
         }
@@ -74,6 +78,7 @@ public class ClientRepository : GenericRepository<Client>, IClientRepository
             if(client == null)
                 return await Task.FromResult(false);
             
+            _dbSet.Remove(client);
             return true;
         }
         catch (Exception e)

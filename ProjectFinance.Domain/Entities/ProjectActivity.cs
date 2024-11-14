@@ -16,6 +16,18 @@ public partial class ProjectActivity
 
     public int? ProjectId { get; set; }
 
+    [StringLength(20)]
+    public string? Reference { get; set; }
+
+    public int? CostDetailId { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal? Amount { get; set; }
+
+    public DateOnly? StartDate { get; set; }
+
+    public DateOnly? EndDate { get; set; }
+
     [ForeignKey("ActivityId")]
     [InverseProperty("ProjectActivities")]
     public virtual Activity? Activity { get; set; }
@@ -25,5 +37,5 @@ public partial class ProjectActivity
     public virtual Project? Project { get; set; }
 
     [InverseProperty("ProjectActivity")]
-    public virtual ICollection<ProjectActivityCost> ProjectActivityCosts { get; } = new List<ProjectActivityCost>();
+    public virtual ICollection<ProjectActivityCost> ProjectActivityCosts { get; set; } = new List<ProjectActivityCost>();
 }

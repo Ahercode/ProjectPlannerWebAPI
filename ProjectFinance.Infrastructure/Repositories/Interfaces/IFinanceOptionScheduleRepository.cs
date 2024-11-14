@@ -4,5 +4,5 @@ namespace ProjectFinance.Infrastructure.Repositories.Interfaces;
 
 public interface IFinanceOptionScheduleRepository: IGenericRepository<FinanceOptionSchedule>
 {
-    Task<FinanceOptionSchedule> GetByFinanceOptionId(int? financeOptionId);
+    // Task<FinanceOptionSchedule> GetByFinanceOptionId(int? financeOptionId);
 }

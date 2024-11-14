@@ -28,7 +28,7 @@ public class CurrencyRepository : GenericRepository<Currency>, ICurrencyReposito
         }
     }
     
-   public override async Task<Currency> GetById(int id)
+   public override async Task<Currency?> GetById(int id)
     {
         try
         {
@@ -56,12 +56,30 @@ public class CurrencyRepository : GenericRepository<Currency>, ICurrencyReposito
             currency.Id = currencyEntity.Id;
             currency.Name = currencyEntity.Name;
             currency.Code = currencyEntity.Code;
-
+            
             return true;
         }
         catch (Exception e)
         {
             _Logger.LogError(e, "{Repo} Update method error", typeof(CurrencyRepository));
+            throw;
+        }
+    }
+    
+    public override async Task<bool> Delete(int id)
+    {
+        try
+        {
+            var currency = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            if (currency == null)
+                return await Task.FromResult(false);
+
+            _dbSet.Remove(currency);
+            return true;
+        }
+        catch (Exception e)
+        {
+            _Logger.LogError(e, "{Repo} Delete method error", typeof(CurrencyRepository));
             throw;
         }
     }

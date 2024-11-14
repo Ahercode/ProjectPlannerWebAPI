@@ -1,5 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses.projectschedule;
 using ProjectFinance.Domain.Entities;
 using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
@@ -13,7 +15,6 @@ public class ProjectScheduleController : BaseController
     }
 
     [HttpGet("")]
-
     public async Task<IActionResult> GetAllProjectSchedules()
     {
         var projectSchedules = await _unitOfWork.ProjectSchedules.GetAll();
@@ -23,7 +24,6 @@ public class ProjectScheduleController : BaseController
     }
 
     [HttpGet("{id}")]
-
     public async Task<IActionResult> GetAProjectSchedule(int id)
     {
         var projectSchedule = await _unitOfWork.ProjectSchedules.GetById(id);
@@ -36,7 +36,7 @@ public class ProjectScheduleController : BaseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateProjectSchedule(ProjectScheduleResponse createProjectScheduleRequest)
+    public async Task<IActionResult> CreateProjectSchedule(ProjectScheduleCreateRequest createProjectScheduleRequest)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -45,29 +45,19 @@ public class ProjectScheduleController : BaseController
         {
             var projectSchedule = _mapper.Map<ProjectSchedule>(createProjectScheduleRequest);
 
-            if (projectSchedule.Id != null)
-            {
-                var projectScheduleInDb = await _unitOfWork.ProjectSchedules.GetById(projectSchedule.Id);
-                if (projectScheduleInDb != null)
-                    return Conflict(new { Message = "ProjectSchedule already exists." });
-            }
-
             await _unitOfWork.ProjectSchedules.Add(projectSchedule);
             await _unitOfWork.CompleteAsync();
 
-            return CreatedAtAction(nameof(GetAProjectSchedule), new { id = projectSchedule.Id }, projectSchedule);
+            return Ok("ProjectSchedule created successfully");
         }
         catch (Exception e)
         {
-            // Consider logging the exception here
             return StatusCode(500, new { Message = "An error occurred while processing your request.", Details = e.Message });
         }
     }
 
-
     [HttpPut("{id}")]
-    
-    public async Task<IActionResult> UpdateProjectSchedule(int id, ProjectScheduleResponse updateProjectScheduleRequest)
+    public async Task<IActionResult> UpdateProjectSchedule(int id, UpdateProjectScheduleRequest updateProjectScheduleRequest)
     {
         if (!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -78,15 +68,17 @@ public class ProjectScheduleController : BaseController
             if (projectSchedule == null)
                 return NotFound("ProjectSchedule not found");
 
-            _mapper.Map(updateProjectScheduleRequest, projectSchedule);
+            var projectScheduleToUpdate = _mapper.Map<ProjectSchedule>(updateProjectScheduleRequest);
+            
+            await _unitOfWork.ProjectSchedules.Update(projectScheduleToUpdate);
             await _unitOfWork.CompleteAsync();
+            
+            return Ok("ProjectSchedule updated successfully");
         }
         catch (Exception e)
         {
             return BadRequest(e.Message);
         }
-
-        return Ok();
     }
     
     [HttpDelete("{id}")]
@@ -100,6 +92,6 @@ public class ProjectScheduleController : BaseController
         await _unitOfWork.ProjectSchedules.Delete(id);
         await _unitOfWork.CompleteAsync();
 
-        return Ok();
+        return Ok("ProjectSchedule deleted successfully");
     }
 }

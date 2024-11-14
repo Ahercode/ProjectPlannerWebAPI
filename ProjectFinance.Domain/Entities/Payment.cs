@@ -12,8 +12,7 @@ public partial class Payment
     [Key]
     public int Id { get; set; }
 
-    [Column(TypeName = "date")]
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
 
     [Column(TypeName = "decimal(18, 2)")]
     public decimal? Amount { get; set; }

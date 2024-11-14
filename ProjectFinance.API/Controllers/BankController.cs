@@ -66,25 +66,21 @@ public class BankController : BaseController
         
     }
     
-    [HttpPut]
-    
-    public async Task<IActionResult> UpdateBank(CommonUpdateRequest updateBankRequest)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateBank(int id, CommonUpdateRequest updateBankRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
 
         try
         {
-            var bank = _mapper.Map<Bank>(updateBankRequest);
-
-            var bankInDb = await _unitOfWork.Banks.GetById(bank.Id);
+            var bankInDb = await _unitOfWork.Banks.GetById(id);
             if (bankInDb == null)
                 return BadRequest("Bank not found");
-
-            bankInDb.Name = bank.Name;
-            bankInDb.Code = bank.Code;
-            // bankInDb.Description = bank.Description;
-
+            
+            var bank = _mapper.Map<Bank>(updateBankRequest);
+            
+            await _unitOfWork.Banks.Update(bank);
             await _unitOfWork.CompleteAsync();
         
             return Ok("Bank updated successfully");

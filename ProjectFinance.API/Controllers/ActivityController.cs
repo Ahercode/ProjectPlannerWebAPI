@@ -25,7 +25,6 @@ public class ActivityController : BaseController
     }
     
     [HttpGet("{id}")]
-    
     public async Task<IActionResult> GetAnActivity(int id)
     {
         var activity = await _unitOfWork.Activities.GetById(id);
@@ -37,8 +36,8 @@ public class ActivityController : BaseController
         return Ok(activityDto);
     }
     
-    [HttpPost]
     
+    [HttpPost("")]
     public async Task<IActionResult> CreateActivity(CommonCreateRequest createActivityRequest)
     {
         if(!ModelState.IsValid)
@@ -68,22 +67,22 @@ public class ActivityController : BaseController
         }
     }
     
-    [HttpPut]
-    
-    public async Task<IActionResult> UpdateActivity(CommonUpdateRequest updateActivityRequest)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateActivity(int id, CommonUpdateRequest updateActivityRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
 
         try
         {
-            var activity = _mapper.Map<Activity>(updateActivityRequest);
 
-            var activityInDb = await _unitOfWork.Activities.GetById(activity.Id);
+            var activityInDb = await _unitOfWork.Activities.GetById(id);
             if (activityInDb == null)
                 return BadRequest("Activity not found");
+            
+            var activity = _mapper.Map<Activity>(updateActivityRequest);
 
-            _unitOfWork.Activities.Update(activity);
+            await _unitOfWork.Activities.Update(activity);
             await _unitOfWork.CompleteAsync();
         
             return Ok("Activity updated successfully");
@@ -96,8 +95,8 @@ public class ActivityController : BaseController
         }
     }
     
-    [HttpDelete("{id}")]
     
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteActivity(int id)
     {
         var activity = await _unitOfWork.Activities.GetById(id);

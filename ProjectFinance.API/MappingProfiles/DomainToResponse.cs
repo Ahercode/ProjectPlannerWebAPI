@@ -34,7 +34,7 @@ public class DomainToResponse : Profile
         CreateMap<CostDetail, CostDetailResponse>().ReverseMap();
         CreateMap<Currency, CommonResponse>();
         CreateMap<FinanceOption, FinanceOptionResponse>().ReverseMap();
-        CreateMap<FinanceOptionSchedule, CommonResponse>();
+        CreateMap<FinanceOptionSchedule, FinanceOptionScheduleResponse>().ReverseMap();
         CreateMap<Invoice, InvoiceResponse>().ReverseMap();
         CreateMap<MonitoringEvaluation, MonitoringEvaluationResponse>().ReverseMap();
         CreateMap<Payment, PaymentResponse>().ReverseMap();
@@ -42,11 +42,14 @@ public class DomainToResponse : Profile
         CreateMap<Project, ProjectResponse>().ReverseMap();
         CreateMap<ProjectActivity, ProjectActivityResponse>().ReverseMap();
         CreateMap<ProjectActivityCost, ProjectActivityCostResponse>().ReverseMap();
+        CreateMap<ProjectCategory, CommonResponse>().ReverseMap();
         CreateMap<ProjectSchedule, ProjectScheduleResponse>().ReverseMap();
-        CreateMap<ProjectType, ProjectTypeResponse>().ReverseMap();
+        CreateMap<ProjectType, CommonResponse>().ReverseMap();
         CreateMap<PurchaseOrder, PurchaseOrderResponse>().ReverseMap();
         CreateMap<Staff, StaffResponse>().ReverseMap();
         CreateMap<Supplier, SupplierResponse>().ReverseMap();
+        CreateMap<Contractor, ContractorResponse>().ReverseMap();
+        CreateMap<StakeHolder, StakeHolderResponse>().ReverseMap();
 
 
         

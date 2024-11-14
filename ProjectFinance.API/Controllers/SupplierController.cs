@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ProjectFinance.Domain.Dtos.Requests;
 using ProjectFinance.Domain.Dtos.Responses.supplier;
 using ProjectFinance.Domain.Entities;
 using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
@@ -37,7 +38,7 @@ public class SupplierController : BaseController
 
  [HttpPost]
 
- public async Task<IActionResult> CreateSupplier(SupplierResponse createSupplierRequest)
+ public async Task<IActionResult> CreateSupplier(SupplierCreateRequest createSupplierRequest)
  {
      if (!ModelState.IsValid)
          return BadRequest("Invalid data provided");
@@ -45,14 +46,7 @@ public class SupplierController : BaseController
      try
      {
          var supplier = _mapper.Map<Supplier>(createSupplierRequest);
-
-         if (supplier.Id != null)
-         {
-             var supplierInDb = await _unitOfWork.Suppliers.GetById(supplier.Id);
-             if (supplierInDb != null)
-                 return BadRequest("Supplier already exists");
-         }
-
+         
          await _unitOfWork.Suppliers.Add(supplier);
          await _unitOfWork.CompleteAsync();
      }
@@ -76,8 +70,10 @@ public class SupplierController : BaseController
          var supplier = await _unitOfWork.Suppliers.GetById(id);
          if (supplier == null)
              return NotFound("Supplier not found");
-
-         _mapper.Map(updateSupplierRequest, supplier);
+         
+         var supplierToUpdate = _mapper.Map<Supplier>(updateSupplierRequest);
+             
+         await _unitOfWork.Suppliers.Update(supplierToUpdate);
          await _unitOfWork.CompleteAsync();
      }
      catch (Exception e)

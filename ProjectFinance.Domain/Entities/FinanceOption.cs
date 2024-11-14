@@ -24,5 +24,5 @@ public partial class FinanceOption
     public virtual Bank? Bank { get; set; }
 
     [InverseProperty("FinanceOption")]
-    public virtual ICollection<FinanceOptionSchedule> FinanceOptionSchedules { get; } = new List<FinanceOptionSchedule>();
+    public virtual ICollection<FinanceOptionSchedule> FinanceOptionSchedules { get; set; } = new List<FinanceOptionSchedule>();
 }

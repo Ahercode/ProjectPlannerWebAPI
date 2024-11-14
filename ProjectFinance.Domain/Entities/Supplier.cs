@@ -26,5 +26,5 @@ public partial class Supplier
     public string? Phone { get; set; }
 
     [InverseProperty("Supplier")]
-    public virtual ICollection<Invoice> Invoices { get; } = new List<Invoice>();
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }

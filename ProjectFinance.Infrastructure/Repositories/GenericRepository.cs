@@ -20,7 +20,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     
     public virtual async Task<IEnumerable<T>> GetAll()
     {
-        throw new NotImplementedException();
+        return await _dbSet.ToListAsync();
     }
 
     public virtual async Task<T?> GetById(int id)
@@ -41,11 +41,17 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public virtual async Task<bool> Update(T entity)
     {
-        throw new NotImplementedException();
+        _dbSet.Update(entity);
+        return true;
     }
 
     public virtual async Task<bool> Delete(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _dbSet.FindAsync(id);
+        if (entity == null)
+            return false;
+        
+        _dbSet.Remove(entity);
+        return true;
     }
 }

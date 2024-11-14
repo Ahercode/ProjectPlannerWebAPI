@@ -55,10 +55,19 @@ public class ProjectRepository : GenericRepository<Project>, IProjectRepository
            project.Id = projectEntity.Id;
            project.Name = projectEntity.Name;
            project.Code = projectEntity.Code;
+           project.ProjectTypeId = projectEntity.ProjectTypeId;
+           project.ProjectCategoryId = projectEntity.ProjectCategoryId;
+           project.CurrencyId = projectEntity.CurrencyId;
            project.StartDate = projectEntity.StartDate;
            project.EndDate = projectEntity.EndDate;
            project.Status = projectEntity.Status;
-           project.CurrencyId = projectEntity.CurrencyId;
+           project.ClientId = projectEntity.ClientId;
+           project.ContractSum = projectEntity.ContractSum;
+           project.Note = projectEntity.Note;
+           project.Location = projectEntity.Location;
+           project.ContractorId = projectEntity.ContractorId;
+           project.ProjectPriority = projectEntity.ProjectPriority;
+                
 
            return true;
        }

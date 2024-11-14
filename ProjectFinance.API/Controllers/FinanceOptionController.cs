@@ -1,5 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses;
 using ProjectFinance.Domain.Dtos.Responses.financeoption;
 using ProjectFinance.Domain.Entities;
@@ -14,20 +16,31 @@ public class FinanceOptionController : BaseController
     }
     
     [HttpGet("")]
-    public async Task<IActionResult> GetAllFinanceOptions()
+    public Task<IActionResult> GetAllFinanceOptions()
     {
-        var financeOptions = await _unitOfWork.FinanceOptions.GetAll();
-        var financeOptionsDto = _mapper.Map<IEnumerable<CommonResponse>>(financeOptions);
+        var financeOptions =  _unitOfWork.FinanceOptions.GetAll().Result.Join(
+            _unitOfWork.Banks.GetAll().Result,
+            financeOption => financeOption.BankId,
+            bank => bank.Id,
+            (financeOption, bank) => new FinanceOptionResponse
+            {
+                Id = financeOption.Id,
+                BankId = financeOption.BankId,
+                BankName = bank.Name,
+                Description = financeOption.Description,
+                OptionType = financeOption.OptionType,
+            }
+        );
         
-        return Ok(financeOptionsDto);
+        
+        return Task.FromResult<IActionResult>(Ok(financeOptions));
     }
     
     [HttpGet("{id}")]
-    
     public async Task<IActionResult> GetAFinanceOption(int id)
     {
         var financeOption = await _unitOfWork.FinanceOptions.GetById(id);
-        var financeOptionDto = _mapper.Map<CommonResponse>(financeOption);
+        var financeOptionDto = _mapper.Map<FinanceOptionResponse>(financeOption);
         
         if(financeOptionDto == null)
             return NotFound("FinanceOption not found");
@@ -36,8 +49,7 @@ public class FinanceOptionController : BaseController
     }
     
     [HttpPost]
-    
-    public async Task<IActionResult> CreateFinanceOption(FinanceOptionResponse createFinanceOptionRequest)
+    public async Task<IActionResult> CreateFinanceOption(FinanceOptionCreateRequest createFinanceOptionRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -45,13 +57,6 @@ public class FinanceOptionController : BaseController
         try
         {
             var financeOption = _mapper.Map<FinanceOption>(createFinanceOptionRequest);
-
-            if (financeOption.BankId != null)
-            {
-                var financeOptionInDb = await _unitOfWork.FinanceOptions.GetByBankId(financeOption.BankId);
-                if (financeOptionInDb != null)
-                    return BadRequest("FinanceOption already exists");
-            }
 
             await _unitOfWork.FinanceOptions.Add(financeOption);
             await _unitOfWork.CompleteAsync();
@@ -66,23 +71,20 @@ public class FinanceOptionController : BaseController
         }
     }
     
-    [HttpPut]
-    
-    public async Task<IActionResult> UpdateFinanceOption(FinanceOptionResponse updateFinanceOptionRequest)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateFinanceOption(int id, UpdateFinanceOptionRequest updateFinanceOptionRequest)
     {
         if (!ModelState.IsValid)
             return BadRequest("Invalid data provided");
 
         try
         {
-            var financeOption = _mapper.Map<FinanceOption>(updateFinanceOptionRequest);
-
-            if (financeOption.Id == null)
-                return BadRequest("FinanceOption does not exist");
-
-            var financeOptionInDb = await _unitOfWork.FinanceOptions.GetById(financeOption.Id);
+            var financeOptionInDb = await _unitOfWork.FinanceOptions.GetById(id);
+            
             if (financeOptionInDb == null)
                 return BadRequest("FinanceOption does not exist");
+            
+            var financeOption = _mapper.Map<FinanceOption>(updateFinanceOptionRequest);
 
             await _unitOfWork.FinanceOptions.Update(financeOption);
             await _unitOfWork.CompleteAsync();
@@ -97,7 +99,6 @@ public class FinanceOptionController : BaseController
     }
     
     [HttpDelete("{id}")]
-    
     public async Task<IActionResult> DeleteFinanceOption(int id)
     {
         var financeOption = await _unitOfWork.FinanceOptions.GetById(id);
