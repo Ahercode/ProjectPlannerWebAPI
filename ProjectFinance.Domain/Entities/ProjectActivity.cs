@@ -19,14 +19,14 @@ public partial class ProjectActivity
     [StringLength(20)]
     public string? Reference { get; set; }
 
-    public int? CostDetailId { get; set; }
-
     [Column(TypeName = "decimal(18, 2)")]
     public decimal? Amount { get; set; }
 
     public DateOnly? StartDate { get; set; }
 
     public DateOnly? EndDate { get; set; }
+
+    public int? ContractorId { get; set; }
 
     [ForeignKey("ActivityId")]
     [InverseProperty("ProjectActivities")]

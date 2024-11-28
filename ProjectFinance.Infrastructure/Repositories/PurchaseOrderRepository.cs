@@ -59,9 +59,7 @@ public class PurchaseOrderRepository : GenericRepository<PurchaseOrder>, IPurcha
          purchaseOrder.SupplierId = purchaseOrderEntity.SupplierId;
          purchaseOrder.ActivityId = purchaseOrderEntity.ActivityId;
          purchaseOrder.ProjectId = purchaseOrderEntity.ProjectId;
-         purchaseOrder.CostDetailId = purchaseOrderEntity.CostDetailId;
-         purchaseOrder.Amount = purchaseOrderEntity.Amount;
-
+         purchaseOrder.Reference = purchaseOrderEntity.Reference;
          return true;
      }
      catch (Exception e)

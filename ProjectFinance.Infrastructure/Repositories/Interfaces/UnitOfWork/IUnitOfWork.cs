@@ -27,6 +27,7 @@ public interface IUnitOfWork
     IContractorRepository Contractors { get; }
     IPODetailRepository PODetails { get; }
     IPODetailReceiveRepository PODetailReceives { get; }
+    IProjectDocumentRepository ProjectDocuments { get; }
     
     Task<bool> CompleteAsync();
 }

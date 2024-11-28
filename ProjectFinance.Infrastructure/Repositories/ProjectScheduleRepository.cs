@@ -57,6 +57,8 @@ public class ProjectScheduleRepository : GenericRepository<ProjectSchedule>, IPr
             projectSchedule.Date = projectScheduleEntity.Date;
             projectSchedule.Amount = projectScheduleEntity.Amount;
             projectSchedule.InvoiceNumber = projectScheduleEntity.InvoiceNumber;
+            projectSchedule.Reference = projectScheduleEntity.Reference;
+            projectSchedule.Description = projectScheduleEntity.Description;
 
             return true;
         }

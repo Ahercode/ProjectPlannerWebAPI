@@ -33,26 +33,18 @@ public class PurchaseOrderController : BaseController
                purchaseOrderProjectActivity =>
                    purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.SupplierId,
                supplier => supplier.Id,
-               (purchaseOrderProjectActivity, supplier) => new { purchaseOrderProjectActivity, supplier })
-           .Join(
-               _unitOfWork.CostDetails.GetAll().Result,
-               purchaseOrderProjectActivitySupplier => purchaseOrderProjectActivitySupplier.purchaseOrderProjectActivity
-                   .purchaseOrderProject.purchaseOrder.CostDetailId,
-               costDetail => costDetail.Id,
-               (p, costDetail) => new PurchaseOrderResponse()
+               (purchaseOrderProjectActivity, supplier) => new PurchaseOrderResponse()
                {
-                    Id = p.purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.Id,
-                    ProjectId = p.purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.ProjectId,
-                    ProjectName = p.purchaseOrderProjectActivity.purchaseOrderProject.project.Name,
-                    ActivityId = p.purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.ActivityId,
-                    ActivityName = p.purchaseOrderProjectActivity.activity.Name,
-                    CostDetailId = p.purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.CostDetailId,
-                    CostDetailName = costDetail.Name,
-                    SupplierId = p.purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.SupplierId,
-                    SupplierName = p.supplier.Name,
-                    Date = p.purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.Date,
-                    Amount = p.purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.Amount,
-                    PONumber = p.purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.PONumber
+                    Id = purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.Id,
+                    ProjectId = purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.ProjectId,
+                    ProjectName = purchaseOrderProjectActivity.purchaseOrderProject.project.Name,
+                    ActivityId = purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.ActivityId,
+                    ActivityName = purchaseOrderProjectActivity.activity.Name,
+                    SupplierId = purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.SupplierId,
+                    SupplierName = supplier.Name,
+                    Date = purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.Date,
+                    PONumber = purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.PONumber,
+                    Reference = purchaseOrderProjectActivity.purchaseOrderProject.purchaseOrder.Reference
                     
                });
        
@@ -74,24 +66,24 @@ public class PurchaseOrderController : BaseController
 
    [HttpPost]
 
-   public async Task<IActionResult> CreatePurchaseOrder(PurchaseOrderRequest createPurchaseOrderRequest)
+   public async Task<IActionResult> CreatePurchaseOrder(PurchaseOrderCreateRequest createPurchaseOrderCreateRequest)
    {
        if (!ModelState.IsValid)
            return BadRequest("Invalid data provided");
 
        try
        {
-           var purchaseOrder = _mapper.Map<PurchaseOrder>(createPurchaseOrderRequest);
+           var purchaseOrder = _mapper.Map<PurchaseOrder>(createPurchaseOrderCreateRequest);
            
            await _unitOfWork.PurchaseOrders.Add(purchaseOrder);
            await _unitOfWork.CompleteAsync();
+           
+           return Ok("PurchaseOrder created successfully");
        }
        catch (Exception e)
        {
            return BadRequest(e.Message);
        }
-
-       return Ok();
    }
    
    [HttpPut("{id}")]

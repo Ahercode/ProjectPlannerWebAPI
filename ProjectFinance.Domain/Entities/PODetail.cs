@@ -20,4 +20,6 @@ public partial class PODetail
 
     [Column(TypeName = "decimal(18, 2)")]
     public decimal? Amount { get; set; }
+
+    public DateOnly? Date { get; set; }
 }

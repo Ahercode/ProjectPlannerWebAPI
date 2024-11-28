@@ -36,6 +36,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         Contractors = new ContractorRepository(context, logger);
         PODetails = new PODetailRepository(context, logger);
         PODetailReceives = new PODetailReceiveRepository(context, logger);
+        ProjectDocuments = new ProjectDocumentRepository(context, logger);
        
     }
 
@@ -66,6 +67,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public IPODetailRepository PODetails { get; }
     
     public IPODetailReceiveRepository PODetailReceives { get; }
+    public IProjectDocumentRepository ProjectDocuments { get; }
     
     
     

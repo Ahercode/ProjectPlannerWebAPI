@@ -58,7 +58,7 @@ public class ProjectActivityRepository: GenericRepository<ProjectActivity>, IPro
             projectActivity.ActivityId = projectActivityEntity.ActivityId;
             projectActivity.ProjectId = projectActivityEntity.ProjectId;
             projectActivity.Reference = projectActivityEntity.Reference;
-            projectActivity.CostDetailId = projectActivityEntity.CostDetailId;
+            projectActivity.ContractorId = projectActivityEntity.ContractorId;
             projectActivity.Amount = projectActivityEntity.Amount;
             projectActivity.StartDate = projectActivityEntity.StartDate;
             projectActivity.EndDate = projectActivityEntity.EndDate;

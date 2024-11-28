@@ -28,7 +28,7 @@ public partial class PurchaseOrder
     [StringLength(50)]
     public string? PONumber { get; set; }
 
-    [StringLength(15)]
+    [StringLength(50)]
     public string? Reference { get; set; }
 
     [InverseProperty("PurchaseOrder")]

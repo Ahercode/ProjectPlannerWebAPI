@@ -11,5 +11,9 @@ public class UpdateProjectScheduleRequest
     public decimal? Amount { get; set; }
     
     public DateOnly? Date { get; set; }
+    
+    public string? Reference { get; set; }
+
+    public string? Description { get; set; }
 
 }

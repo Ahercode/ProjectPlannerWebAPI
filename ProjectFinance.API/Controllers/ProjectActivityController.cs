@@ -15,7 +15,6 @@ public class ProjectActivityController : BaseController
     }
   
    [HttpGet("")]
-   
    public async Task<IActionResult> GetAllProjectActivities()
    {
        var projectActivities = _unitOfWork.ProjectActivities.GetAll().Result
@@ -28,12 +27,13 @@ public class ProjectActivityController : BaseController
                _unitOfWork.Activities.GetAll().Result,
                projectActivityProject => projectActivityProject.projectActivity.ActivityId,
                activity => activity.Id,
-               (projectActivityProject, activity) => new { projectActivityProject, activity }).Join(
-               _unitOfWork.CostDetails.GetAll().Result,
+               (projectActivityProject, activity) => new { projectActivityProject, activity })
+           .Join(
+               _unitOfWork.Contractors.GetAll().Result,
                projectActivityProjectActivity =>
-                   projectActivityProjectActivity.projectActivityProject.projectActivity.CostDetailId,
-               costDetail => costDetail.Id,
-               (projectActivityProjectActivity, costDetail) => new ProjectActivityResponse()
+                   projectActivityProjectActivity.projectActivityProject.projectActivity.ContractorId,
+               contractor => contractor.id
+               , (projectActivityProjectActivity, contractor) => new ProjectActivityResponse()
                {
                    Id = projectActivityProjectActivity.projectActivityProject.projectActivity.Id,
                    ActivityId = projectActivityProjectActivity.projectActivityProject.projectActivity.ActivityId,
@@ -41,12 +41,13 @@ public class ProjectActivityController : BaseController
                    ProjectId = projectActivityProjectActivity.projectActivityProject.projectActivity.ProjectId,
                    ProjectName = projectActivityProjectActivity.projectActivityProject.project.Name,
                    Reference = projectActivityProjectActivity.projectActivityProject.projectActivity.Reference,
-                   CostDetailId = projectActivityProjectActivity.projectActivityProject.projectActivity.CostDetailId,
-                   CostDetailName = costDetail.Name,
                    Amount = projectActivityProjectActivity.projectActivityProject.projectActivity.Amount,
                    StartDate = projectActivityProjectActivity.projectActivityProject.projectActivity.StartDate,
-                   EndDate = projectActivityProjectActivity.projectActivityProject.projectActivity.EndDate
-               });
+                   EndDate = projectActivityProjectActivity.projectActivityProject.projectActivity.EndDate,
+                   ContractorId = projectActivityProjectActivity.projectActivityProject.projectActivity.ContractorId,
+                   ContractorName = contractor.name
+               }
+           );
        
        return Ok(projectActivities);
    }

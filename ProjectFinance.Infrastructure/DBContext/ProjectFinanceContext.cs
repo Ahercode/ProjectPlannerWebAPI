@@ -181,11 +181,6 @@ public partial class ProjectFinanceContext : DbContext
             entity.HasOne(d => d.Project).WithMany(p => p.ProjectSchedules).HasConstraintName("FK_ProjectSchedule_Project");
         });
 
-        modelBuilder.Entity<PurchaseOrder>(entity =>
-        {
-            entity.Property(e => e.Reference).IsFixedLength();
-        });
-
         modelBuilder.Entity<Staff>(entity =>
         {
             entity.Property(e => e.Gender).IsFixedLength();

@@ -26,4 +26,8 @@
       <ProjectReference Include="..\ProjectFinance.Domain\ProjectFinance.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="HelpingServices\" />
+    </ItemGroup>
+
 </Project>

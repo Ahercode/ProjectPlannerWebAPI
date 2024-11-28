@@ -14,9 +14,9 @@ public class ProjectActivityResponse
 
     public string? Reference { get; set; }
 
-    public int? CostDetailId { get; set; }
+    public int? ContractorId { get; set; }
     
-    public string? CostDetailName { get; set; }
+    public string? ContractorName { get; set; }
     
     public decimal? Amount { get; set; }
 

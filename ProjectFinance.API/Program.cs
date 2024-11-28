@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using ProjectFinance.Infrastructure.DBContext;
 using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
-using ProjectFinance.Infrastructure.Repositories.Interfaces.UploadFile;
+using ProjectFinance.Infrastructure.HelpingServices.UploadFile;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,12 +37,12 @@ app.UseCors(options =>
         .AllowAnyHeader();
 });
 
-
 app.UseStaticFiles( new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "Uploads")),  
     RequestPath = "/Uploads"
 });
+
 app.UseSwagger();
 app.UseSwaggerUI();
 

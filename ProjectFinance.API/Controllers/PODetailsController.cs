@@ -15,12 +15,25 @@ public class PODetailsController : BaseController
     }
     
     [HttpGet]
-    public async Task<IActionResult> GetPODetails()
+    public Task<IActionResult> GetPODetails()
     {
-        var poDetails = await _unitOfWork.PODetails.GetAll();
-        var poDetailsDto = _mapper.Map<IEnumerable<PODetailResponse>>(poDetails);
+        var poDetails =  _unitOfWork.PODetails.GetAll().Result
+            .Join(
+                _unitOfWork.CostDetails.GetAll().Result,
+                poDetail => poDetail.CostDetailId,
+                costDetail => costDetail.Id,
+                (poDetail, costDetail) => new PODetailResponse
+                {
+                    Id = poDetail.Id,
+                    CostDetailId = poDetail.CostDetailId,
+                    CostDetailName = costDetail.Name,
+                    PurchaseOrderId = poDetail.PurchaseOrderId,
+                    Quantity = poDetail.Quantity,
+                    Amount = poDetail.Amount,
+                    Date = poDetail.Date
+                });
         
-        return Ok(poDetailsDto);
+        return Task.FromResult<IActionResult>(Ok(poDetails));
     }
     
     [HttpGet("{id}")]

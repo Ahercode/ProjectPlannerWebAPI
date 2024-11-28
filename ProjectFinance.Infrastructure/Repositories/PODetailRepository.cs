@@ -58,6 +58,7 @@ public class PODetailRepository : GenericRepository<PODetail>, IPODetailReposito
             poDetail.CostDetailId = poDetailEntity.CostDetailId;
             poDetail.Quantity = poDetailEntity.Quantity;
             poDetail.Amount = poDetailEntity.Amount;
+            poDetail.Date = poDetailEntity.Date;  
                 
             return true;
         }

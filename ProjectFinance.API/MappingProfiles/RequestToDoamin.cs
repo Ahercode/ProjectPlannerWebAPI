@@ -40,13 +40,13 @@ public class RequestToDoamin : Profile
         CreateMap<UpdateProjectActivity, ProjectActivity>().ReverseMap();
         CreateMap<CommonCreateRequest, ProjectCategory>().ReverseMap();
         CreateMap<CommonUpdateRequest, ProjectCategory>().ReverseMap();
-        CreateMap<ProjectRequest, Project>().ReverseMap();
+        CreateMap<ProjectCreateRequest, Project>().ReverseMap();
         CreateMap<UpdateProjectRequest, Project>().ReverseMap();
         CreateMap<ProjectScheduleCreateRequest, ProjectSchedule>().ReverseMap();
         CreateMap<UpdateProjectScheduleRequest, ProjectSchedule>().ReverseMap();
         CreateMap<CommonCreateRequest, ProjectType>().ReverseMap();
         CreateMap<CommonUpdateRequest, ProjectType>().ReverseMap();
-        CreateMap<PurchaseOrderRequest, PurchaseOrder>().ReverseMap();
+        CreateMap<PurchaseOrderCreateRequest, PurchaseOrder>().ReverseMap();
         CreateMap<UpdatePurchaseOrderRequest, PurchaseOrder>().ReverseMap();
         CreateMap<StaffRequest, Staff>().ReverseMap();
         CreateMap<UpdateStaffRequest, Staff>().ReverseMap();
@@ -60,6 +60,7 @@ public class RequestToDoamin : Profile
         CreateMap<PODetailUpdateRequest, PODetail>().ReverseMap();
         CreateMap<PODetailReceiveCreateRequest, PODetailReceive>().ReverseMap();
         CreateMap<PODetailReceiveUpdateRequest, PODetailReceive>().ReverseMap();
+        CreateMap<ProjectDocumentCreateRequest, ProjectDocument>().ReverseMap();
     }
     
 }

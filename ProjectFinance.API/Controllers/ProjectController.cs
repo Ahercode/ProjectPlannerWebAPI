@@ -1,5 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ProjectFinance.Domain.Dtos.Requests;
+using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses.project;
 using ProjectFinance.Domain.Entities;
 using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
@@ -83,7 +85,7 @@ public class ProjectController : BaseController
     }
     
     [HttpPost]
-    public async Task<IActionResult> CreateProject(ProjectResponse createProjectRequest)
+    public async Task<IActionResult> CreateProject(ProjectCreateRequest createProjectRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -91,13 +93,6 @@ public class ProjectController : BaseController
         try
         {
             var project = _mapper.Map<Project>(createProjectRequest);
-
-            if (project.Id != null)
-            {
-                var projectInDb = await _unitOfWork.Projects.GetById(project.Id);
-                if (projectInDb != null)
-                    return BadRequest("Project already exists");
-            }
 
             await _unitOfWork.Projects.Add(project);
             await _unitOfWork.CompleteAsync();
@@ -112,7 +107,7 @@ public class ProjectController : BaseController
     
     [HttpPut("{id}")]
     
-    public async Task<IActionResult> UpdateProject(int id, ProjectResponse updateProjectRequest)
+    public async Task<IActionResult> UpdateProject(int id, UpdateProjectRequest updateProjectRequest)
     {
         if(!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -123,8 +118,10 @@ public class ProjectController : BaseController
 
             if (project == null)
                 return NotFound("Project not found");
-
-            _mapper.Map(updateProjectRequest, project);
+            
+            var updatedProject = _mapper.Map<Project>(updateProjectRequest);
+            
+            await _unitOfWork.Projects.Update(updatedProject);
             await _unitOfWork.CompleteAsync();
         }
         catch (Exception e)

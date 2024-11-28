@@ -22,6 +22,11 @@ public partial class ProjectSchedule
     [StringLength(30)]
     public string? InvoiceNumber { get; set; }
 
+    [StringLength(50)]
+    public string? Reference { get; set; }
+
+    public string? Description { get; set; }
+
     [ForeignKey("ProjectId")]
     [InverseProperty("ProjectSchedules")]
     public virtual Project? Project { get; set; }

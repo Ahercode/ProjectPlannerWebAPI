@@ -67,7 +67,6 @@ public class ProjectRepository : GenericRepository<Project>, IProjectRepository
            project.Location = projectEntity.Location;
            project.ContractorId = projectEntity.ContractorId;
            project.ProjectPriority = projectEntity.ProjectPriority;
-                
 
            return true;
        }
