@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace ProjectFinance.Domain.Dtos.Requests.Updates;
 
 public class UpdatePurchaseOrderRequest
@@ -15,4 +17,8 @@ public class UpdatePurchaseOrderRequest
     public string? PONumber { get; set; }
     
     public string? Reference { get; set; }
+    
+    public string? FileName { get; set; }
+    
+    public IFormFile? FileToUpload { get; set; }
 }

@@ -31,6 +31,8 @@ public partial class PurchaseOrder
     [StringLength(50)]
     public string? Reference { get; set; }
 
+    public string? FileName { get; set; }
+
     [InverseProperty("PurchaseOrder")]
     public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 

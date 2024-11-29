@@ -23,4 +23,8 @@ public class ProjectActivityResponse
     public DateOnly? StartDate { get; set; }
 
     public DateOnly? EndDate { get; set; }
+    
+    public string? Note { get; set; }
+
+    public string? FileName { get; set; }
 }

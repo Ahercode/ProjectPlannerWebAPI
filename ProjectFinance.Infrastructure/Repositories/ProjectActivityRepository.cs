@@ -62,6 +62,8 @@ public class ProjectActivityRepository: GenericRepository<ProjectActivity>, IPro
             projectActivity.Amount = projectActivityEntity.Amount;
             projectActivity.StartDate = projectActivityEntity.StartDate;
             projectActivity.EndDate = projectActivityEntity.EndDate;
+            projectActivity.Note = projectActivityEntity.Note;
+            projectActivity.FileName = projectActivityEntity.FileName;
             
             return await Task.FromResult(true);
         }

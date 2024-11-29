@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace ProjectFinance.Domain.Dtos.Requests;
 
 public class PurchaseOrderCreateRequest
@@ -14,5 +16,9 @@ public class PurchaseOrderCreateRequest
     public string? PONumber { get; set; }
     
     public string? Reference { get; set; }
+    
+    public string? FileName { get; set; }
+    
+    public IFormFile? FileObject { get; set; }
     
 }

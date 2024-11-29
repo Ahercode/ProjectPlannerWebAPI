@@ -18,4 +18,6 @@ public class PurchaseOrderResponse
     public string? PONumber { get; set; }
     
     public string? Reference { get; set; }
+
+    public string? FileName { get; set; }
 }

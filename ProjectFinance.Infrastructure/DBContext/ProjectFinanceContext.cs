@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ProjectFinance.Domain.Entities;
 
 namespace ProjectFinance.Infrastructure.DBContext;
@@ -67,7 +65,6 @@ public partial class ProjectFinanceContext : DbContext
     public virtual DbSet<StakeHolder> StakeHolders { get; set; }
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
-    
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

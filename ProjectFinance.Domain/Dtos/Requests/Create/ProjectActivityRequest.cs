@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace ProjectFinance.Domain.Dtos.Requests;
 
 public class ProjectActivityRequest
@@ -15,4 +17,10 @@ public class ProjectActivityRequest
     public DateOnly? StartDate { get; set; }
 
     public DateOnly? EndDate { get; set; }
+    
+    public string? Note { get; set; }
+
+    public string? FileName { get; set; }
+    
+    public IFormFile? FileObject { get; set; }
 }

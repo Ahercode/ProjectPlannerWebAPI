@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace ProjectFinance.Domain.Dtos.Requests.Updates;
 
 public class UpdateProjectActivity
@@ -17,4 +19,9 @@ public class UpdateProjectActivity
     public DateOnly? StartDate { get; set; }
 
     public DateOnly? EndDate { get; set; }
+
+    public string? Note { get; set; }
+
+    public string? FileName { get; set; }
+    public IFormFile? FileObject { get; set; }
 }

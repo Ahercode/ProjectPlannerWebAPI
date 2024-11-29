@@ -30,6 +30,8 @@ public partial class ProjectActivity
 
     public string? Note { get; set; }
 
+    public string? FileName { get; set; }
+
     [ForeignKey("ActivityId")]
     [InverseProperty("ProjectActivities")]
     public virtual Activity? Activity { get; set; }

@@ -4,14 +4,17 @@ using ProjectFinance.Domain.Dtos.Requests;
 using ProjectFinance.Domain.Dtos.Requests.Updates;
 using ProjectFinance.Domain.Dtos.Responses.projectactivity;
 using ProjectFinance.Domain.Entities;
+using ProjectFinance.Infrastructure.HelpingServices.UploadFile;
 using ProjectFinance.Infrastructure.Repositories.Interfaces.UnitOfWork;
 
 namespace ProjectFinance.API.Controllers;
 
 public class ProjectActivityController : BaseController
 {
-    public ProjectActivityController(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
+    private readonly IFileUploadService _fileUploadService;
+    public ProjectActivityController(IUnitOfWork unitOfWork, IMapper mapper, IFileUploadService fileUploadService) : base(unitOfWork, mapper)
     {
+        _fileUploadService = fileUploadService;
     }
   
    [HttpGet("")]
@@ -45,6 +48,8 @@ public class ProjectActivityController : BaseController
                    StartDate = projectActivityProjectActivity.projectActivityProject.projectActivity.StartDate,
                    EndDate = projectActivityProjectActivity.projectActivityProject.projectActivity.EndDate,
                    ContractorId = projectActivityProjectActivity.projectActivityProject.projectActivity.ContractorId,
+                   Note = projectActivityProjectActivity.projectActivityProject.projectActivity.Note,
+                   FileName = projectActivityProjectActivity.projectActivityProject.projectActivity.FileName,
                    ContractorName = contractor.name
                }
            );
@@ -53,7 +58,6 @@ public class ProjectActivityController : BaseController
    }
    
    [HttpGet("{id}")]
-   
    public async Task<IActionResult> GetAProjectActivity(int id)
    {
        var projectActivity = await _unitOfWork.ProjectActivities.GetById(id);
@@ -66,14 +70,17 @@ public class ProjectActivityController : BaseController
    }
    
    [HttpPost]
-   
-   public async Task<IActionResult> CreateProjectActivity(ProjectActivityRequest createProjectActivityRequest)
+   public async Task<IActionResult> CreateProjectActivity([FromForm] ProjectActivityRequest createProjectActivityRequest)
    {
        if(!ModelState.IsValid)
            return BadRequest("Invalid data provided");
 
        try
        {
+           var fileName = await _fileUploadService.UploadFile(createProjectActivityRequest.FileObject, "ProjectDocs");
+
+           createProjectActivityRequest.FileName = fileName;
+           
            var projectActivity = _mapper.Map<ProjectActivity>(createProjectActivityRequest);
 
            await _unitOfWork.ProjectActivities.Add(projectActivity);
@@ -87,9 +94,8 @@ public class ProjectActivityController : BaseController
        return Ok("ProjectActivity created successfully");
    }
    
-    // PUT: api/ProjectActivity/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProjectActivity(int id, UpdateProjectActivity updateProjectActivityRequest)
+   [HttpPut("{id}")] 
+   public async Task<IActionResult> UpdateProjectActivity(int id,[FromForm] UpdateProjectActivity updateProjectActivityRequest)
     {
         if (!ModelState.IsValid)
             return BadRequest("Invalid data provided");
@@ -101,9 +107,20 @@ public class ProjectActivityController : BaseController
             return NotFound("ProjectActivity not found");
 
         try
-        {
+        { 
             var projectActivityDto = _mapper.Map<ProjectActivity>(updateProjectActivityRequest);
+            
+            if (updateProjectActivityRequest.FileObject != null)
+            {
+                if (projectActivity.FileName != null)
+                    await _fileUploadService.DeleteFile(projectActivity.FileName, "ProjectDocs");
 
+                var fileName = await _fileUploadService.UploadFile(updateProjectActivityRequest.FileObject, "ProjectDocs");
+                
+                projectActivityDto.FileName = fileName;
+                
+            }
+            
             await _unitOfWork.ProjectActivities.Update(projectActivityDto);
             await _unitOfWork.CompleteAsync();
         }
@@ -115,7 +132,6 @@ public class ProjectActivityController : BaseController
         return Ok("ProjectActivity updated successfully");
     }
    
-   
    [HttpDelete("{id}")]
    public async Task<IActionResult> DeleteProjectActivity(int id)
    {
@@ -123,6 +139,9 @@ public class ProjectActivityController : BaseController
        
        if(projectActivity == null)
            return NotFound("ProjectActivity not found");
+       
+       if(projectActivity.FileName != null)
+         await _fileUploadService.DeleteFile(projectActivity.FileName, "ProjectDocs");
        
        await _unitOfWork.ProjectActivities.Delete(id);
        await _unitOfWork.CompleteAsync();
