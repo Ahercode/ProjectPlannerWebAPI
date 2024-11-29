@@ -11,8 +11,6 @@ namespace ProjectFinance.API.Controllers;
 public class ProjectDocsController : BaseController
 {
     private readonly IFileUploadService _fileUploadService;
-    // private 
-    //
 
     public ProjectDocsController(IUnitOfWork unitOfWork, IMapper mapper, IFileUploadService fileUploadService) : base(unitOfWork, mapper)
     {
@@ -23,6 +21,7 @@ public class ProjectDocsController : BaseController
     public async Task<IActionResult> GetAllProjectDocs()
     {
         var projectDocs = await _unitOfWork.ProjectDocuments.GetAll();
+        
         return Ok(projectDocs);
     }
 
@@ -46,7 +45,7 @@ public class ProjectDocsController : BaseController
     {
         var projectDoc = await _unitOfWork.ProjectDocuments.GetById(id);
         
-        if (projectDoc == null)
+        if(projectDoc == null)
         {
             return NotFound();
         }
@@ -58,6 +57,7 @@ public class ProjectDocsController : BaseController
             var imageName = await _fileUploadService.UploadFile(request.FileObject, "ProjectDocs");
             projectDoc.Id = request.Id;
             projectDoc.DocUrl = imageName;
+            projectDoc.Note = request.Note;
             projectDoc.ProjectId = request.ProjectId;
         }
         
