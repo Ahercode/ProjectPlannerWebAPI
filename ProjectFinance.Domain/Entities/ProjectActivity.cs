@@ -28,6 +28,8 @@ public partial class ProjectActivity
 
     public int? ContractorId { get; set; }
 
+    public string? Note { get; set; }
+
     [ForeignKey("ActivityId")]
     [InverseProperty("ProjectActivities")]
     public virtual Activity? Activity { get; set; }

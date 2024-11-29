@@ -68,6 +68,7 @@ public partial class ProjectFinanceContext : DbContext
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
     
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Activity>(entity =>
