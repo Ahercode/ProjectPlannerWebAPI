@@ -8,5 +8,5 @@ public class PODetailReceiveResponse
 
     public DateOnly? ReceivedDate { get; set; }
 
-    public int? QunatityReceived { get; set; }
+    public int? QuantityReceived { get; set; }
 }

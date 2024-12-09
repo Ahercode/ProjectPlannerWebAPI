@@ -6,5 +6,5 @@ public class PODetailReceiveCreateRequest
 
     public DateOnly? ReceivedDate { get; set; }
 
-    public int? QunatityReceived { get; set; }
+    public int? QuantityReceived { get; set; }
 }

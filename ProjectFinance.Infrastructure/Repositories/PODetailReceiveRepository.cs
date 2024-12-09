@@ -55,7 +55,7 @@ public class PODetailReceiveRepository : GenericRepository<PODetailReceive>, IPO
             
             poDetailReceive.Id = poDetailReceiveEntity.Id;
             poDetailReceive.PODetailId = poDetailReceiveEntity.PODetailId;
-            poDetailReceive.QunatityReceived = poDetailReceiveEntity.QunatityReceived;
+            poDetailReceive.QuantityReceived = poDetailReceiveEntity.QuantityReceived;
             poDetailReceive.ReceivedDate = poDetailReceiveEntity.ReceivedDate;
             
             return true;
