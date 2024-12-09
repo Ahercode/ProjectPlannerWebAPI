@@ -56,6 +56,7 @@ public class ProjectDocumentRepository : GenericRepository<ProjectDocument>, IPr
             
             projectDocument.ProjectId = entity.ProjectId;
             projectDocument.DocUrl = entity.DocUrl;
+            projectDocument.Note = entity.Note;
             
             return await Task.FromResult(true);
         }
